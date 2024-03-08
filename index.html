@@ -7,8 +7,8 @@
     <meta name="author" content="">
     <!-- Open Graph meta tags for social sharing -->
     <meta property="og:title" content="Dark Sanctuary Games Association">
-    <meta property="og:description" content="Your hub for all things gaming. Join us for exciting events, connect with fellow gamers, and explore the world of gaming together!">
-    <!-- <meta property="og:image" content="hiligen-logo2.webp"> -->
+    <meta property="og:description" content="De primaire website van vereniging TDS voor het beheren van onze ledenadministratie.">
+    <meta property="og:image" content="hiligen-logo2.webp">
     <meta property="og:locale" content="nl_NL" />
     <meta property="og:type" content="website"/>
     <meta property="og:url" content="https://www.donkereheiligdom.nl">
@@ -18,79 +18,106 @@
     <link rel="icon" type="image/png" sizes="32x32" href="images/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="images/favicon/favicon-16x16.png">
     <link rel="manifest" href="images/favicon/site.webmanifest">
-    <link rel="stylesheet" href="css/trongate.css">
+    <!-- Styling Sheets -->
+    <link rel="stylesheet" href="css/default.css">
     <title>Home | Dark Sanctuary</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        header {
-            background-color: #333;
-            padding: 20px 0;
-            text-align: center;
-        }
-        nav {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-        nav a {
-            color: white;
-            text-decoration: none;
-            padding: 10px 20px;
-            margin: 0 10px;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-            margin-bottom: 10px; /* Added margin for spacing between links */
-        }
-        nav a:hover {
-            background-color: #555;
-        }
-        .logo {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .logo a {
-            display: block;
-        }
-        .logo img {
-            max-width: 100px;
-            height: auto;
-        }
-        section {
-            padding: 20px;
-            text-align: center;
-        }
-        @media only screen and (max-width: 500px) {
-            nav a {
-                width: 43%; /* Make links take full width on smaller screens */
-                box-sizing: border-box; /* Ensure padding is included in width */
-                margin-bottom: 5px; /* Adjust spacing between links */
-            }
-        }
-    </style>
+    <script defer src="assets/section-handler.js"></script>
+    <script defer src="assets/form.multi-step.js"></script>
 </head>
 
 <body>
     <header>
-        <div class="logo"><a href="#"><img src="images/hiligen-logo2.webp" alt="Games Association Logo"></a></div>
+        <div class="logo"><a href="#" id="home"><img src="images/hiligen-logo2.webp" alt="Games Association Logo"></a></div>
         <nav>
-            <a href="#">Nieuws</a>
-            <a href="#">Activiteiten</a>
-            <a href="#">Over ons</a>
-            <a href="#">Contact</a>
+            <a href="#" data-section="news">Nieuws</a>
+            <a href="#" data-section="login">Mijn Raad</a>
+            <a href="#" data-section="error404">Over ons</a>
+            <a href="#" data-section="error404">Contact</a>
         </nav>
     </header>
 
-    <section>
-        <h2>Welkom bij spellenvereniging het Donkere Heiligdom</h2>
-        <p>Officieel (ENG: Dark Sanctuary) is een besloten vereniging dat eindelijk de sprong maakt naar het wereldwijde web.<br>
-            Ontstaan uit een klein groepje school vrienden met een gezamenlijk passie voor Yugioh, toernooien en videogames, en uitgegroeid tot een organisatie dat zich richt op het uitoefenen van gezelschapsspellen en videogames. 
-            Waar we vroeger Dungeons & Dragons, Yugioh, Digimon, Videogames, en Warhammer behandelden, is het tegenwoordig alleen Magic the Gathering, Warhammer en Pathfinder.</p>
-    </section>
-</body>
+    <main>
+        <section id="home" class="current">
+            <h2>Welkom bij spellenvereniging het Donkere Heiligdom</h2>
+            <p>Officieel (ENG: Dark Sanctuary) is een besloten vereniging dat eindelijk de sprong maakt naar het wereldwijde web.<br>
+                Ontstaan uit een klein groepje school vrienden met een gezamenlijk passie voor Yugioh, toernooien en videogames, en uitgegroeid tot een organisatie dat zich richt op het uitoefenen van gezelschapsspellen en videogames. 
+                Waar we vroeger Dungeons & Dragons, Yugioh, Digimon, Videogames, en Warhammer behandelden, is het tegenwoordig alleen Magic the Gathering, Warhammer en Pathfinder.</p>
+        </section>
+    
+        <section id="news" class="hidden">
+            <h2>Nieuws</h2>
+            <p>hey, I am still empty. You should fill me up.</p>
+        </section>
 
+        <section id="login" class="hidden">
+            <div class="form-window">
+                <h2>Inloggen op Mijn Raad</h2>
+                <form action="#" method="post">
+                    <p class="error-msg"></p>
+                    <label for="username">Gebruikersnaam</label>
+                    <input type="text" name="username" placeholder="Gebruikersnaam" required>
+                    <label for="pwd">Wachtwoord</label>
+                    <input type="password" name="pwd" placeholder="Wachtwoord" required>
+
+                    <button type="submit" name="login">Inloggen</button>
+                    <span>Nog geen account? <a href="#" data-section="sign_up">maak er hier eentje aan</a></span>
+                </form>
+            </div>
+        </section>
+
+        <section id="sign_up" class="hidden">
+            <div class="form-window">
+                <h2>Een Nieuw Account</h2>
+                <form action="#" method="post" id="registerform">
+                    <div style="text-align:center;margin-top:10px; cursor:default;">
+                        <span class="step"></span>
+                        <span class="step"></span>
+                        <span class="step"></span>
+                    </div>
+
+                    <p class="error-msg"></p>
+                    <div class="tab">
+                        <label for="firstname">Voornaam</label>
+                        <input type="text" name="firstname" placeholder="Voornaam">
+                        <label for="lastname">Achteraam</label>
+                        <input type="text" name="lastname" placeholder="Achternaam">
+                    </div>
+
+                    <div class="tab">
+                        <label for="username">Gebruikersnaam</label>
+                        <input type="text" name="username" placeholder="Gebruikersnaam">
+                        <label for="email">E-mailadres</label> 
+                        <input type="text" name="email" placeholder="E-mailadres">
+                    </div>
+
+                    <div class="tab">
+                        <label for="pwd">Wachtwoord</label>
+                        <input type="password" name="pwd" placeholder="Wachtwoord">
+                        <label for="pwd">Herhaal Wachtwoord</label>
+                        <input type="password" name="pwdR" placeholder="Herhaal Wachtwoord">
+                        <label for="terms"></label>
+                        <span><input type="checkbox" title="terms" name="terms" required> Lees en accepteer de <a href="terms-and-conditions.php" target="_blank">algemene voorwaarden</a>.</span>
+                    </div>
+
+                    <div class="rotator">
+                        <button type="submit" id="prevBtn" onclick="nextPrev(-1)">Terug</button>
+                        <button type="submit" id="nextBtn" onclick="nextPrev(1)">Verder</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <section id="error404" class="hidden">
+            <h2>Error 404</h2>
+            <p>Zo te zien ben je op een pagina geland welke nog niet bestaat, of onlangs is verwijderd.</p>
+        </section>
+
+        <!-- Wie JS heeft uitgeschakeld krijgt een site melding te zien -->
+        <noscript>
+            <div>
+                <p>Het lijkt erop dat JavaScript is uitgeschakeld in uw browser. <br>Hierdoor kunt u waarschijnlijk geen gebruik maken van de website.</p>
+            </div>
+        </noscript> 
+    </main>
+</body>
 </html>
