@@ -1,2 +1,0 @@
-# Donkerdom
-Membership management system

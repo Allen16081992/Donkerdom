@@ -31,25 +31,36 @@ document.addEventListener('DOMContentLoaded', function () {
     // Event listener for company logo
     logoLink.addEventListener('click', function (event) {
         event.preventDefault();
+        nav.querySelectorAll('a').forEach(link => link.classList.remove('current'));
         const sectionId = 'home'; // Assuming 'home' is the ID of the section you want to show
         paintSection(sectionId);
     });
 
     // Event listener for navigation bar
     nav.addEventListener('click', function (event) {
-        if (event.target.tagName === 'A') {
+        // Remove 'current' class from all navigation links
+        nav.querySelectorAll('a').forEach(link => link.classList.remove('current'));
+
+        if (!(event.target.id === 'logout')) {
+            // Handle navigation within the single-page application
             event.preventDefault();
             const sectionId = event.target.getAttribute('data-section');
             paintSection(sectionId);
+
+            // Add 'current' class to the clicked navigation link
+            event.target.classList.add('current');
         }
     });
 
-    // Event listener for account creation
-    signupLink.addEventListener('click', function (event) {
-        event.preventDefault();
-        const sectionId = 'sign_up'; // Assuming 'sign_up' is the ID of the section you want to show
-        paintSection(sectionId);
-    });
+    // Verify if we can signup. (if not, then its no homepage)
+    if (signupLink) {
+        // Event listener for account creation
+        signupLink.addEventListener('click', function (event) {
+            event.preventDefault();
+            const sectionId = 'sign_up'; // Assuming 'sign_up' is the ID of the section you want to show
+            paintSection(sectionId);
+        });
+    }
 
     // Display the 'home' section when the page loads
     // We call the first section of pages 'home' to indicate the main or most important content.

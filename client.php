@@ -1,3 +1,8 @@
+<?php // Dhr. Allen Pieter
+    require_once './config/session_manager.config.php';
+    //verify_UnauthorizedAccess(); // Call the user login definer.
+    //sessionRegenerateTimer(); // Call the periodic session regenerater.
+?>
 <!DOCTYPE html>
 <html lang="nl">
 <head>
@@ -14,23 +19,22 @@
     <meta property="og:url" content="https://www.donkereheiligdom.nl">
     <link rel="canonical" href="https://www.donkereheiligdom.nl">
     <!-- Favicon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="images/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon/favicon-16x16.png">
-    <link rel="manifest" href="images/favicon/site.webmanifest">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon/favicon-16x16.png">
+    <link rel="manifest" href="assets/images/favicon/site.webmanifest">
     <!-- Styling Sheets -->
-    <link rel="stylesheet" href="css/default.css">
+    <link rel="stylesheet" href="assets/css/default.css">
     <title>Mijn Raad | Dark Sanctuary</title>
-    <script defer src="assets/section-handler.js"></script>
+    <script defer src="assets/js/section-handler.js"></script>
 </head>
 
 <body>
     <header>
-        <div class="logo"><a href="#" id="home"><img src="images/hiligen-logo2.webp" alt="Games Association Logo"></a></div>
+        <div class="logo"><a id="home"><img src="assets/images/hiligen-logo2.webp" alt="Games Association Logo"></a></div>
         <nav>
-            <!-- <a href="#" data-section="news">Nieuws</a>
-            <a href="#" data-section="error404">Over ons</a>
-            <a href="#" data-section="error404">Contact</a> -->
+            <a data-section="home" class="current">Mijn Raad</a> 
+            <a href="controllers/logout.control.php" id="logout">Uitloggen</a>
         </nav>
     </header>
 

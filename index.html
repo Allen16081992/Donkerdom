@@ -14,23 +14,23 @@
     <meta property="og:url" content="https://www.donkereheiligdom.nl">
     <link rel="canonical" href="https://www.donkereheiligdom.nl">
     <!-- Favicon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="images/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon/favicon-16x16.png">
-    <link rel="manifest" href="images/favicon/site.webmanifest">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon/favicon-16x16.png">
+    <link rel="manifest" href="assets/images/favicon/site.webmanifest">
     <!-- Styling Sheets -->
-    <link rel="stylesheet" href="css/default.css">
+    <link rel="stylesheet" href="assets/css/default.css">
     <title>Home | Dark Sanctuary</title>
-    <script defer src="assets/section-handler.js"></script>
-    <script defer src="assets/form.multi-step.js"></script>
+    <script defer src="assets/js/section-handler.js"></script>
+    <script defer src="assets/js/form.multi-step.js"></script>
 </head>
 
 <body>
     <header>
-        <div class="logo"><a href="#" id="home"><img src="images/hiligen-logo2.webp" alt="Games Association Logo"></a></div>
+        <div class="logo"><a href="#" id="home"><img src="assets/images/hiligen-logo2.webp" alt="Games Association Logo"></a></div>
         <nav>
             <a href="#" data-section="news">Nieuws</a>
-            <a href="#" data-section="login">Mijn Raad</a>
+            <a href="login.php" data-section="login">Mijn Raad</a>
             <a href="#" data-section="error404">Over ons</a>
             <a href="#" data-section="error404">Contact</a>
         </nav>
@@ -40,8 +40,8 @@
         <section id="home" class="current">
             <h2>Welkom bij spellenvereniging het Donkere Heiligdom</h2>
             <p>Officieel (ENG: Dark Sanctuary) is een besloten vereniging dat eindelijk de sprong maakt naar het wereldwijde web.<br>
-                Ontstaan uit een klein groepje school vrienden met een gezamenlijk passie voor Yugioh, toernooien en videogames, en uitgegroeid tot een organisatie dat zich richt op het uitoefenen van gezelschapsspellen en videogames. 
-                Waar we vroeger Dungeons & Dragons, Yugioh, Digimon, Videogames, en Warhammer behandelden, is het tegenwoordig alleen Magic the Gathering, Warhammer en Pathfinder.</p>
+               Ontstaan uit een klein groepje school vrienden met een gezamenlijk passie voor Yugioh, toernooien en videogames, en uitgegroeid tot een organisatie dat zich richt op het uitoefenen van gezelschapsspellen en videogames. 
+               Waar we vroeger Dungeons & Dragons, Yugioh, Digimon, Videogames, en Warhammer behandelden, is het tegenwoordig alleen Magic the Gathering, Warhammer en Pathfinder.</p>
         </section>
     
         <section id="news" class="hidden">
@@ -52,15 +52,14 @@
         <section id="login" class="hidden">
             <div class="form-window">
                 <h2>Inloggen op Mijn Raad</h2>
-                <form action="#" method="post">
-                    <p class="error-msg"></p>
+                <form action="controllers/submission_handler.control.php" method="post">
                     <label for="username">Gebruikersnaam</label>
                     <input type="text" name="username" placeholder="Gebruikersnaam" required>
                     <label for="pwd">Wachtwoord</label>
                     <input type="password" name="pwd" placeholder="Wachtwoord" required>
 
                     <button type="submit" name="login">Inloggen</button>
-                    <span>Nog geen account? <a href="#" data-section="sign_up">maak er hier eentje aan</a></span>
+                    <span>Nog geen account? <a href="signup.php" data-section="sign_up">maak er hier eentje aan</a></span>
                 </form>
             </div>
         </section>
@@ -68,33 +67,32 @@
         <section id="sign_up" class="hidden">
             <div class="form-window">
                 <h2>Een Nieuw Account</h2>
-                <form action="#" method="post" id="registerform">
+                <form action="controllers/submission_handler.control.php" method="post" id="registerform">
                     <div style="text-align:center;margin-top:10px; cursor:default;">
                         <span class="step"></span>
                         <span class="step"></span>
                         <span class="step"></span>
                     </div>
 
-                    <p class="error-msg"></p>
                     <div class="tab">
                         <label for="firstname">Voornaam</label>
-                        <input type="text" name="firstname" placeholder="Voornaam">
+                        <input type="text" name="firstname" placeholder="Voornaam" required>
                         <label for="lastname">Achteraam</label>
                         <input type="text" name="lastname" placeholder="Achternaam">
                     </div>
 
                     <div class="tab">
                         <label for="username">Gebruikersnaam</label>
-                        <input type="text" name="username" placeholder="Gebruikersnaam">
+                        <input type="text" name="username" placeholder="Gebruikersnaam" required>
                         <label for="email">E-mailadres</label> 
                         <input type="text" name="email" placeholder="E-mailadres">
                     </div>
 
                     <div class="tab">
                         <label for="pwd">Wachtwoord</label>
-                        <input type="password" name="pwd" placeholder="Wachtwoord">
+                        <input type="password" name="pwd" placeholder="Wachtwoord" required>
                         <label for="pwd">Herhaal Wachtwoord</label>
-                        <input type="password" name="pwdR" placeholder="Herhaal Wachtwoord">
+                        <input type="password" name="pwdR" placeholder="Herhaal Wachtwoord" required>
                         <label for="terms"></label>
                         <span><input type="checkbox" title="terms" name="terms" required> Lees en accepteer de <a href="terms-and-conditions.php" target="_blank">algemene voorwaarden</a>.</span>
                     </div>
@@ -114,9 +112,9 @@
 
         <!-- Wie JS heeft uitgeschakeld krijgt een site melding te zien -->
         <noscript>
-            <div>
-                <p>Het lijkt erop dat JavaScript is uitgeschakeld in uw browser. <br>Hierdoor kunt u waarschijnlijk geen gebruik maken van de website.</p>
-            </div>
+            <p class="error-msg">Het lijkt erop dat JavaScript is uitgeschakeld in uw browser. <br>De knoppen onder onze vleermuis zijn daardoor uitgeschakeld.</p>
+            <form action="login.php"><button type="submit">Inloggen</button></form>
+            <form action="signup.php"><button type="submit">Account Maken</button></form>
         </noscript> 
     </main>
 </body>

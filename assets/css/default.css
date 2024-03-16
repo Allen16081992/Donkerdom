@@ -23,8 +23,11 @@ nav a {
     border-radius: 5px;
     transition: background-color 0.3s;
 }
-nav a:hover {
+nav a:hover, nav a.current {
     background-color: #555;
+}
+nav a.current {
+    cursor: default;
 }
 .logo {
     text-align: center;
@@ -44,14 +47,8 @@ section {
     align-items: center;
     padding:20px;
 }
-.error-msg { 
-    position:relative;
-    height:18px; 
-    width:100%;
-    border: 2px dotted green; /* TESTING */
-}
 .form-window form {
-    padding:0 10px 10px;
+    padding:10px 10px 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -63,6 +60,7 @@ section {
     box-sizing: border-box;
     margin-top: 5px;
 }
+input { margin-bottom:5px; }
 input[type="text"],
 input[type="email"],
 input[type="password"],
@@ -90,6 +88,23 @@ input[type="submit"], button, textarea {
 } #prev, #next { width:35%; } #next { float:right; }
 input.invalid {background-color: #ffdddd;}
 .hidden, .tab { display: none; }
+
+.error-msg, .success-msg { 
+    text-align: center;
+    position:relative;
+    background:transparent;
+    height:5rem; 
+    width:100%;
+    /*font-weight: var(--error-font-w); */
+}
+.success-msg {
+    background:rgb(232, 255, 233);
+    border: 1px solid rgb(20, 220, 100); 
+}
+.error-msg {
+    background: rgba(255, 232, 232); 
+    border: 1px solid rgb(220, 43, 20); 
+}
 @media only screen and (max-width: 500px) {
     .logo img {max-width:100px;}
     nav a {
