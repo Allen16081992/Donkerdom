@@ -3,15 +3,15 @@
     require_once 'db/config.db.php';
 
     class Database {
-        private static $DB_INSTANCE;
-        private $DB_INVOKE;
+        private static $dbInstance;
+        private $dbInvoke;
 
         // Constructor: Establishes a database connection once during object instantiation,
         // reducing overhead associated with creating a new connection for each operation.
         private function __construct() {
             try { 
                 // Establish a PDO database connection
-                $this->DB_INVOKE = new PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME, DB_USER, DB_PASSWORD,
+                $this->dbInvoke = new PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME, DB_USER, DB_PASSWORD,
                     //Deny charset encoding injections that could cause SQL injections with and without prepared statements.
                     array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8'")
                 );
@@ -26,15 +26,15 @@
         // Allow subclasses to access the 'static' method directly.
         // Provide a global access point for creating a single instance of the class (Singleton pattern).
         public static function getInstance() {
-            if (!self::$DB_INSTANCE) {
-                self::$DB_INSTANCE = new self();
+            if (!self::$dbInstance) {
+                self::$dbInstance = new self();
             }
-            return self::$DB_INSTANCE;
+            return self::$dbInstance;
         }
 
         // Method to get the PDO instance for database operations
         // By re-using the current database connection, we can manage memory usage and server load more efficiently.
         public function connect() {
-            return $this->DB_INVOKE;
+            return $this->dbInvoke;
         }
     }
