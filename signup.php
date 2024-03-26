@@ -124,7 +124,7 @@
                         <label for="terms"></label>
                         <span><input type="checkbox" title="terms" name="terms" required> Lees en accepteer de <a href="terms-and-conditions.php" target="_blank">algemene voorwaarden</a>.</span>
 
-                        <button type="submit" name="signup">Aanmelden</button>          
+                        <button type="submit" id="nextBtn" name="signup">Aanmelden</button>          
                     </form>
                 </div>
             </section>

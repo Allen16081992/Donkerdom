@@ -1,21 +1,23 @@
 <?php // Dhr. Allen Pieter
-    require_once '../config/session_manager.config.php';
 
-    #############################
-    ##   Submission  Handler   ##
-    #############################
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-        // Initialize an array for field names and values.
+        // Create an array for field names and values.
         $formFields = [];
 
         // Iterate over each form field submitted via POST request.
-        foreach ($_POST as $fieldName => $fieldValue) {
+        foreach ($_POST as $fieldName => $dirtyValue) {
+
             // Sanitize field values to prevent cross-site scripting (XSS) attacks.
-            $fieldValue = htmlspecialchars($fieldValue);
+            $fieldValue = htmlspecialchars($dirtyValue);
+
             // Assign the sanitized field names and values to the formFields array.
             $formFields[$fieldName] = $fieldValue;
         }
+
+        ##############################
+        ##   Form Differentiating   ##
+        ##############################
 
         ##   Login   ##   Signup   ## 
         if(isset($_POST['login'])) {
@@ -30,7 +32,4 @@
             $lc = new SignupControl($formFields);
             $lc->verifySignup();
         }
-
-        //$db = Database::getInstance();
-        //$conn = $db->connect();
     }
