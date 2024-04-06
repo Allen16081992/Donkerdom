@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const nav = document.querySelector('nav');
 
     // Select the logo link using its ID
-    const logoLink = document.getElementById('home');
+    const logoLink = document.getElementById('logo');
 
     // Select all sections
     const sections = document.querySelectorAll('main section');

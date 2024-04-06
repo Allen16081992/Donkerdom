@@ -23,48 +23,54 @@
     <link rel="manifest" href="assets/images/favicon/site.webmanifest">
     <!-- Styling Sheets -->
     <link rel="stylesheet" href="assets/css/default.css">
-    <title>Login | Dark Sanctuary</title>
+    <title>Nieuwe Lid | Dark Sanctuary</title>
 </head>
 
 <body>
     <header>
-        <div class="logo"><a href="index.html"><img src="assets/images/hiligen-logo2.webp" alt="Games Association Logo"></a></div>
+        <!-- <div class="logo"><a href="index.html"><img src="assets/images/hiligen-logo2.webp" alt="Games Association Logo"></a></div> -->
         <nav>
-            <a href="#" class="current">Mijn Raad</a>
-            <a href="index.html">Terug</a>
+            <a href="client.php">Mijn Raad</a>
+            <a href="client.php">Terug</a>
         </nav>
     </header>
 
     <main>
-        <section id="login">
+        <!-- User Profile Form -->
+        <section id="user">
             <div class="form-window">
-                <h2>Inloggen op Mijn Raad</h2>
+                <?php
+                    // if statement voor (Admin) Create, Read, Update, Delete requests
+                    //////////////////////////////////////////////////////////////////
+                    //////////////////////////////////////////////////////////////////
+                ?>
+                <h2>Een Nieuw Account</h2>
                 <form action="controllers/submission_handler.control.php" method="post">
-                    <?php
-                        if (isset($_SESSION['error'])) {
-                            echo '<div class="error-msg">'.$_SESSION['error'].'</div>';
-                            $_SESSION['error'] = null; // Clear the server message on page reload
-                        }
-                        if (isset($_SESSION['success'])) {
-                            echo '<div class="success-msg">'.$_SESSION['success'].'</div>';
-                            $_SESSION['success'] = null; // Clear the server message on page reload
-                        }
-                    ?>
+                    <p>Vervang mij</p>
+                    <!-- <label for="firstname">Voornaam</label>
+                    <input type="text" name="firstname" placeholder="Voornaam" required>
+
+                    <label for="lastname">Achteraam</label>
+                    <input type="text" name="lastname" placeholder="Achternaam" required>
+
                     <label for="username">Gebruikersnaam</label>
                     <input type="text" name="username" placeholder="Gebruikersnaam" required>
-                    <label for="pwd">Wachtwoord</label>
-                    <input type="password" name="pwd" placeholder="Wachtwoord" required>
 
-                    <button type="submit" name="login">Inloggen</button>
-                    <span>Nog geen account? <a href="signup.php">maak er hier eentje aan</a></span>
+                    <label for="email">E-mailadres</label>
+                    <input type="email" name="email" placeholder="Email" required>
+
+                    <select id="rankDropdown" name="rank">
+                        <option value="default">Rechten</option>
+                        <option value="User">Guest</option>
+                        <option value="User">Member</option>
+                        <option value="User">Council</option>
+                        <option value="User">Admin</option>
+                    </select> 
+
+                    <button type="submit" name="create">Aanmaken</button>-->
                 </form>
             </div>
         </section>
-
-        <!-- Wie JS heeft uitgeschakeld krijgt een site melding te zien -->
-        <noscript>
-            <p class="error-msg">Het lijkt erop dat JavaScript is uitgeschakeld in uw browser. <br>De knoppen onder onze vleermuis werken hierdoor niet meer.</p>
-        </noscript>
     </main>
 </body>
 </html>

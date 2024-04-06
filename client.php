@@ -27,7 +27,7 @@
     <link rel="stylesheet" href="assets/css/default.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
     <title>Mijn Raad | Dark Sanctuary</title>
-    <!--<script defer src="assets/js/section-handler.js"></script>-->
+    <script defer src="assets/js/section-handler.js"></script>
 </head>
 
 <body>
@@ -44,76 +44,65 @@
         <section id="home">
             <h2>User Profile Management</h2>
             <!-- User Table -->
-            <div class="table-container">
-                <a href="#" class="create-contact">Create Member</a>
-                <form id="searchForm">
-                    <label for="search"></label>
-                    <input type="text" id="search" name="search" placeholder="Enter keyword...">
-                    <input type="submit" value="Search">
-                </form>
+            <div class="container">
+                <div class="search-container">
+                    <input type="text" placeholder="Search...">
+                    <form action="handle_member.php" method="post">
+                        <button class="filter-btn" name="createMember">Create</button>
+                    </form>
+                    <select id="filterDropdown">
+                        <option>Filter</option>
+                        <option value="category1">Admin</option>
+                        <option value="category2">Council</option>
+                        <option value="category3">Member</option>
+                        <option value="category3">Guest</option>
+                        <option value="category3">Date</option>
+                    </select>
+                </div>
                 <table>
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Username</th>
-                            <th>Name</th>
+                            <th>Gebruiker</th>
+                            <th>Naam</th>
+                            <th>Achternaam</th>
                             <th>Email</th>
-                            <th>Role</th>
-                            <th>#</th>
+                            <th>Rechten</th>
+                            <th>Actie</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td>1</td>
                             <td>john_doe</td>
-                            <td>John Doe</td>
+                            <td>John</td>
+                            <td>Doe</td>
                             <td>john@example.com</td>
                             <td>Admin</td>
-                            <td class="actions">
-                                <a href="update.php?id=" class="edit"><i class="fas fa-pen fa-xs"></i></a>
-                                <a href="delete.php?id=" class="trash"><i class="fas fa-trash fa-xs"></i></a>
+                            <td>
+                                <form action="handle_member.php" method="post">
+                                    <button class="edit" name="editMember"><i class="fas fa-edit"></i></button>  
+                                    <button class="trash" name="undoMember"><i class="fas fa-trash-alt"></i></button>
+                                </form> 
                             </td>
                         </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>jane_smith</td>
-                            <td>Jane Smith</td>
-                            <td>jane@example.com</td>
-                            <td>User</td>
-                            <td class="actions">
-                                <a href="update.php?id=" class="edit"><i class="fas fa-pen fa-xs"></i></a>
-                                <a href="delete.php?id=" class="trash"><i class="fas fa-trash fa-xs"></i></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>nikita_kuznetsov</td>
-                            <td>Nikita Kuznetsov</td>
-                            <td>nikita@example.com</td>
-                            <td>Guest</td>
-                            <td class="actions">
-                                <a href="update.php?id=" class="edit"><i class="fas fa-pen fa-xs"></i></a>
-                                <a href="delete.php?id=" class="trash"><i class="fas fa-trash fa-xs"></i></a>
-                            </td>
-                        </tr>
-                        <!-- Add more rows here if needed -->
+                        <!-- Add more rows as needed -->
                     </tbody>
                 </table>
-                <div class="pagination">
-                    <a href="read.php?page="><i class="fas fa-angle-double-left fa-sm"></i></a>
-                    <a href="read.php?page="><i class="fas fa-angle-double-right fa-sm"></i></a>
-                </div>
             </div>
 
             <!-- User Profile Form -->
-            <h2>Create Member</h2>
+            <!-- <h2>Create Member</h2>
             <div class="form-window">
                 <form action="#" method="post">
-                    <label for="username">Gebruikersnaam</label>
-                    <input type="text" id="username" name="username" required>
+                    <label for="firstname">Voornaam</label>
+                    <input type="text" name="firstname" placeholder="Voornaam" required>
 
-                    <label for="name">Volledige Naam</label>
-                    <input type="text" id="name" name="name" required>
+                    <label for="lastname">Achteraam</label>
+                    <input type="text" name="lastname" placeholder="Achternaam" required>
+
+                    <label for="username">Gebruikersnaam</label>
+                    <input type="text" name="username" placeholder="Gebruikersnaam" required>
 
                     <label for="email">E-mailadres</label>
                     <input type="email" id="email" name="email" required>
@@ -128,14 +117,12 @@
 
                     <button type="submit" name="create">Aanmaken</button>
                 </form>
-            </div>
+            </div> -->
         </section>
 
         <!-- Wie JS heeft uitgeschakeld krijgt een site melding te zien -->
         <noscript>
-            <div>
-                <p>Het lijkt erop dat JavaScript is uitgeschakeld in uw browser. <br>Hierdoor kunt u waarschijnlijk geen gebruik maken van de website.</p>
-            </div>
+            <p>Het lijkt erop dat JavaScript is uitgeschakeld in uw browser. <br>Hierdoor kunt u waarschijnlijk geen gebruik maken van de website.</p>
         </noscript> 
     </main>
 </body>
