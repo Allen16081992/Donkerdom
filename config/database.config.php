@@ -7,7 +7,7 @@
         private $dbInvoke;
 
         // Constructor: Establishes a database connection once during object instantiation,
-        // reducing overhead associated with creating a new connection for each operation.
+        // reduce overhead associated with creating a new connection for each operation.
         private function __construct() {
             try { 
                 // Establish a PDO database connection
@@ -33,7 +33,7 @@
         }
 
         // Method to get the PDO instance for database operations
-        // By re-using the current database connection, we can manage memory usage and server load more efficiently.
+        // By re-using the current database connection, we manage memory and server load better.
         public function connect() {
             return $this->dbInvoke;
         }

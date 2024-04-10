@@ -1,6 +1,6 @@
 <?php // Dhr. Allen Pieter.
     // Load Database connection
-    require_once '../config/imdb.config.php'; // PDO
+    require_once '../config/database.config.php'; // PDO
     require_once '../config/session_manager.config.php'; // Session
     require_once '../controllers/controller_traits.control.php'; // Rebounds
 
@@ -15,15 +15,17 @@
             $uid = $formFields['username'];
             $email = $formFields['email'];
 
+            // Get all associated rows
             $stmt = $db->connect()->prepare('SELECT COUNT(*) FROM members WHERE username = ? OR email = ?;');
 
+            // Verify if request was succesfull
             if(!$stmt->execute([$uid, $email])) {
                 $_SESSION['error'] = "Our servers are down for maintenance.<br> Please contact the administrator.";
-                $this->reboundSignup();
+                $this->reboundAssigner();
             }
             if ($stmt->fetchColumn() > 0) {
                 $_SESSION['error'] = "This username is already in use.";
-                $this->reboundSignup();
+                $this->reboundAssigner();
             }
 
             // If no matching result is found, create the user
@@ -47,19 +49,26 @@
             $HashThisNOW = password_hash($passw, PASSWORD_ARGON2I, $options);  
 
             // Prepare SQL statement.
-            $stmt = $db->connect()->prepare("INSERT INTO members (username, firstname, lastname, `password`, email, rankID) VALUES (?, ?, ?, ?, ?, ?);");
+            $stmt = $db->connect()->prepare("INSERT INTO members (username, firstname, lastname, `password`, email, user_level) VALUES (?, ?, ?, ?, ?, ?);");
 
             // Extract the other values from the formFields array.
             $fname = $formFields['firstname'];
             $lname = $formFields['lastname'];
 
+            // Check if a user level was given.
+            if (!empty($formFields['user_level'])) {
+                $rank = $formFields['user_level'];
+            } else { 
+                $rank = 1; // Guest level.
+            } 
+
             // Execute the prepared statement with the provided variables.
-            if(!$stmt->execute([$uid, $fname, $lname, $HashThisNOW, $email, 1])) {
+            if(!$stmt->execute([$uid, $fname, $lname, $HashThisNOW, $email, $rank])) {
                 $_SESSION['error'] = "Account creation failed.<br> Please contact the administrator.";
-                $this->reboundSignup();
+                $this->reboundAssigner();
             }
 
-            $_SESSION['success'] = "Bedankt voor het aanmelden.<br> Welkom op Team Dark Sanctuary!<br>En vergeet onze vleermuis niet te aaien!";
-            $this->reboundLogin();
+            $_SESSION['success'] = "Bedankt voor het aanmelden.<br> Welkom bij Team Dark Sanctuary!<br>En vergeet onze vleermuis niet te aaien!";
+            $this->reboundAssigner();
         }
     }

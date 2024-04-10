@@ -3,12 +3,13 @@
         session_start();
     }
    
+    // Verification for page permission
     function verify_UnauthorizedAccess() {
-        if ($_SESSION['session_data']['user_id'] ?? null !== null) {
-            $_SESSION['error'] = '401: Access denied. You must be signed in.';
+        if (!isset($_SESSION['session_data']['user_id'])) {
+            // 401: Access denied. You must be signed in.
             header('Location: ././index.html');
             exit;
-        } 
+        }
         else {
             // Regenerate the session ID
             session_regenerate_id(true);
@@ -26,5 +27,17 @@
         if ($currentTime - $lastRegen >= $regenInterval) {
             session_regenerate_id(true);
             $_SESSION['session_data']['last_regen'] = time();
+        }
+    }
+
+    // Server message cleanup function
+    function server_Messenger() {
+        if (isset($_SESSION['error'])) {
+            echo '<div class="error-msg">'.$_SESSION['error'].'</div>';
+            $_SESSION['error'] = null; // Clear the server message on page reload
+        }
+        if (isset($_SESSION['success'])) {
+            echo '<div class="success-msg">'.$_SESSION['success'].'</div>';
+            $_SESSION['success'] = null; // Clear the server message on page reload
         }
     }

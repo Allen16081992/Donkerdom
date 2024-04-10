@@ -1,6 +1,6 @@
 <?php // Dhr. Allen Pieter
     // Load Database connection
-    require_once '../config/imdb.config.php'; // PDO
+    require_once '../config/database.config.php'; // PDO
     require_once '../config/session_manager.config.php'; // Session
     require_once '../controllers/controller_traits.control.php'; // Rebounds
 
@@ -13,7 +13,7 @@
             $db = Database::getInstance();
 
             // Prepare SQL statement.
-            $stmt = $db->connect()->prepare('SELECT userID, username, `password` FROM members WHERE username = ? OR email = ?;');          
+            $stmt = $db->connect()->prepare('SELECT userID, username, `password`, user_level FROM members WHERE username = ? OR email = ?;');          
             
             // Extract the specified values from the formFields array.
             $uid = $formFields['username'];
@@ -22,7 +22,7 @@
             // Execute the prepared statement with the provided variables.
             if(!$stmt->execute([$uid, $passw])) {
                 $_SESSION['error'] = 'User verification failed!';
-                $this->reboundLogin();
+                $this->reboundAssigner();
             }
 
             // Fetch the row from the result.
@@ -31,7 +31,7 @@
             // Check if the fetched result contains any row data.
             if(!$data) {
                 $_SESSION['error'] = 'Unable to find a user.';
-                $this->reboundLogin();
+                $this->reboundAssigner();
             }
 
             // Extract the hashed password from the fetched array.
@@ -40,16 +40,19 @@
             // Verify the password against the hash using the salt.
             if (!password_verify($passw, $pwdHash)) {
                 $_SESSION['error'] = "Incorrect password.";
-                $this->reboundLogin();
+                $this->reboundAssigner();
             }
 
             $_SESSION['session_data'] = array(
                 'user_id' => $data['userID'],
-                'username' => $data['username']
+                'username' => $data['username'],
+                'rank' => $data['user_level']
             );
 
+            $_SESSION['succes'] = "Hallo," . $data['username'];
+
             // Go to the member environment.
-            header('location: ../client.php');
+            header('location: ../council.php');
             exit();
         }
     }

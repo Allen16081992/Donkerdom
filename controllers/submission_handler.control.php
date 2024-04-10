@@ -19,17 +19,36 @@
         ##   Form Differentiating   ##
         ##############################
 
-        ##   Login   ##   Signup   ## 
+        ##   Login   ##   Signup   ##
         if(isset($_POST['login'])) {
             require_once '../models/login.model.php';
             require_once './login.control.php';
             $lc = new LoginControl($formFields);
             $lc->verifyLogin();
         }
-        if(isset($_POST['signup'])) {
+        if(isset($_POST['signup']) || isset($_POST['addMember'])) {
             require_once '../models/signup.model.php';
             require_once './signup.control.php';
+
+            if (isset($_POST['addMember'])) {
+                $formFields['pwdR'] = htmlspecialchars($_POST['pwd']);
+            }
+            
             $lc = new SignupControl($formFields);
             $lc->verifySignup();
+        }
+
+        ##   Update   ##   Trash   ##
+        if(isset($_POST['editMember'])) {
+            //require_once '../models/signup.model.php';
+            //require_once './signup.control.php';
+            //$lc = new SignupControl($formFields);
+            //$lc->verifySignup();
+        }
+        if(isset($_POST['undoMember'])) {
+            //require_once '../models/signup.model.php';
+            //require_once './signup.control.php';
+            //$lc = new SignupControl($formFields);
+            //$lc->verifySignup();
         }
     }

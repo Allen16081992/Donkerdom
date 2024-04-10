@@ -55,7 +55,7 @@ section, .form-window form {
 .form-window form {
     border:2px solid grey;
     border-radius:15px;
-    width:23rem;
+    max-width:23rem;
 }
 .form-window input, button, textarea {
     box-sizing: border-box;
@@ -95,7 +95,7 @@ input.invalid {background-color: #ffdddd;}
     text-align: center;
     position:relative;
     background:transparent;
-    height:5rem; 
+    min-height:5rem; 
     width:100%;
 }
 .success-msg {

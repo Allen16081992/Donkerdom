@@ -1,12 +1,16 @@
 <?php // Dhr. Allen Pieter
     trait Rebounds {
-        private function reboundLogin() {
-            header('location: ../login.php');
-            exit();
-        }
-
-        private function reboundSignup() {
-            header('location: ../signup.php');
+        private function reboundAssigner() {
+            // Verify where the request came from and redirect to the appropriate page
+            if (isset($_POST['login'])) {
+                header('location: ../login.php');
+            }
+            elseif (isset($_POST['signup'])) {
+                header('location: ../signup.php');
+            }
+            elseif (isset($_POST['addMember']) || isset($_POST['editMember']) || isset($_POST['undoMember'])) {
+                header('location: ../member.php');
+            }
             exit();
         }
     }
@@ -66,7 +70,6 @@
                 elseif ($fieldName === 'pwdR') {
                     // Check if the field name is 'pwdR' and if it matches exactly with 'pwd'
                     if ($fieldValue !== $this->formFields['pwd']) {
-                        // Return the field name if 'pwdR' does not match 'pwd'
                         return "Passwords don't match.";
                     }
                 }

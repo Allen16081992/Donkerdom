@@ -16,12 +16,12 @@
             if($this->emptyCheck()) {
                 // Empty input, no values given for account.
                 $_SESSION['error'] = 'No '.$this->emptyCheck().' provided.';
-                $this->reboundLogin();
+                $this->reboundAssigner();
             }
             if($this->invalidCheck()) {
                 // Empty input, no values given for account.
                 $_SESSION['error'] = ''.$this->invalidCheck().'';
-                $this->reboundLogin();
+                $this->reboundAssigner();
             }
             $this->getMember($this->formFields);
         }
