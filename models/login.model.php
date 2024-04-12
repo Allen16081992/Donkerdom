@@ -22,7 +22,7 @@
             // Execute the prepared statement with the provided variables.
             if(!$stmt->execute([$uid, $passw])) {
                 $_SESSION['error'] = 'User verification failed!';
-                $this->reboundAssigner();
+                $this->reboundPath('location: ../login.php');
             }
 
             // Fetch the row from the result.
@@ -31,7 +31,7 @@
             // Check if the fetched result contains any row data.
             if(!$data) {
                 $_SESSION['error'] = 'Unable to find a user.';
-                $this->reboundAssigner();
+                $this->reboundPath('location: ../login.php');
             }
 
             // Extract the hashed password from the fetched array.
@@ -40,7 +40,7 @@
             // Verify the password against the hash using the salt.
             if (!password_verify($passw, $pwdHash)) {
                 $_SESSION['error'] = "Incorrect password.";
-                $this->reboundAssigner();
+                $this->reboundPath('location: ../login.php');
             }
 
             $_SESSION['session_data'] = array(
@@ -49,10 +49,9 @@
                 'rank' => $data['user_level']
             );
 
-            $_SESSION['succes'] = "Hallo," . $data['username'];
+            $_SESSION['success'] = "Hallo, ".$data['username'];
 
-            // Go to the member environment.
-            header('location: ../council.php');
-            exit();
+            // Head to the council page.
+            $this->reboundPath('location: ../council.php');
         }
     }

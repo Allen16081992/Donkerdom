@@ -28,45 +28,90 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
     <title>Mijn Raad | Dark Sanctuary</title>
     <script defer src="assets/js/section-handler.js"></script>
+    <script defer src="assets/js/table-filter.js"></script>
 </head>
 
 <body>
     <header>
         <div class="logo"><a href="#" id="logo"><img src="assets/images/hiligen-logo2.webp" alt="Games Association Logo"></a></div>
         <nav>
+            <a href="#" data-section="profile" style="font-style:italic;"><?= $_SESSION['session_data']['username']; ?></a>
+            <a href="#" data-section="home">Raad</a>
             <a href="#" data-section="manage">Management</a>
-            <a href="#" data-section="myplace">Account</a>
             <a href="./logout.php" id="logout">Uitloggen</a>
         </nav>
     </header>
 
     <main>
+        <?php server_Messenger(); ?>
         <section id="home" class="current">
-            <h2>Mijn Raad</h2>
+            <h2>Raadkamer</h2>
             <p>De officiële Hoge Raad om te stemmen.</p>
+        </section>
+
+        <section id="profile" class="hidden">
+            <?php require_once './models/getmember.model.php'; ?>
+            <h2>Account Wijzigen</h2>
+            <div class="form-window">
+                <?php switch($myData['user_level']) {
+                        case 1:
+                            echo "<p>Guest</p>";
+                            break;
+                        case 2:
+                            echo "<p>Member</p>";
+                            break;
+                        case 3:
+                            echo "<p>Council</p>";
+                            break;
+                        case 4:
+                            echo "<p>Admin</p>";
+                            break;
+                } ?>
+                <form action="controllers/submission_handler.control.php" method="post">
+                    <label for="firstname">Voornaam</label>
+                    <input type="text" name="firstname" placeholder="Voornaam" value="<?= $myData['firstname']; ?>">
+                    <label for="lastname">Achteraam</label>
+                    <input type="text" name="lastname" placeholder="Achternaam" value="<?= $myData['lastname']; ?>">
+                    <label for="username">Gebruikersnaam</label>
+                    <input type="text" name="username" placeholder="Gebruikersnaam" value="<?= $myData['username']; ?>">
+                    <label for="email">E-mailadres</label>
+                    <input type="email" name="email" placeholder="Email" value="<?= $myData['email']; ?>">
+                    <label for="pwd">Wachtwoord</label>
+                    <input type="password" name="pwd" placeholder="Wachtwoord">     
+
+                    <input type="hidden" name="user_level" value="<?= $_SESSION['session_data']['rank']; ?>">
+                    <input type="hidden" name="uid" value="<?= $_SESSION['session_data']['user_id']; ?>">
+
+                    <button type="submit" id="prevBtn" name="editMyself">Opslaan</button>
+                    <a href="account.php">Account Sluiten</a>
+                    <span style="opacity:0;">Nog geen account? maak er hier eentje aan</span>
+                </form>
+            </div>
         </section>
     
         <section id="manage" class="hidden">
             <?php require_once './models/getdata.model.php'; ?>
-            <h2>Leden Management</h2>
+            <h2>Leden Lijst</h2>
             <div class="container">
-                <div class="search-container">
-                    <input type="text" placeholder="Search...">
-                    <form action="member.php" method="post">
-                        <button class="filter-btn" name="createMember">Create</button>
-                    </form>
-
+                <div class="filter-container">
                     <select id="filterDropdown">
-                        <option>Filter</option>
-                        <option value="admin">Admin</option>
-                        <option value="council">Council</option>
-                        <option value="member">Member</option>
-                        <option value="guest">Guest</option>
-                        <option value="date">Date</option>
+                        <option value="all" selected>Show All</option>
+                        <option value="1">Guest</option>
+                        <option value="2">Member</option>
+                        <option value="3">Council</option>
+                        <option value="4">Admin</option>
                     </select>
+
+                    <input type="text" disabled><!-- Maybe a future search bar -->
+
+                    <?php if ($_SESSION['session_data']['rank'] == 4) { ?>
+                        <form action="member.php" method="post">
+                            <button class="filter-btn" name="createMember">Create</button>
+                        </form>
+                    <?php } ?>
                 </div>
 
-                <table>
+                <table id="userDataTable">
                     <thead>
                         <tr>
                             <th>ID</th>
@@ -79,8 +124,8 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php if (!empty($acData)) { ?>
-                        <?php foreach ($acData as $userData): ?>
+                    <?php if ($_SESSION['session_data']['rank'] == 4) { ?>
+                        <?php if (!empty($acData)) { foreach ($acData as $userData): ?>
                             <tr>
                                 <td><?= $userData['userID']; ?></td>
                                 <td><?= $userData['username']; ?></td>
@@ -111,36 +156,45 @@
                                     </form> 
                                 </td>
                             </tr>
-                        <?php endforeach; ?>
-                        <?php } else { ?>
+                        <?php endforeach; } ?>
+                    <?php } else { ?>
+                        <?php if (!empty($acData)) { foreach ($acData as $userData): ?>
                             <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td><?= $userData['userID']; ?></td>
+                                <td><?= $userData['username']; ?></td>
+                                <td><?= $userData['firstname']; ?></td>
+                                <td><?= $userData['lastname']; ?></td>
+                                <td><?= $userData['email']; ?></td>
+                                <td><?php 
+                                    switch($userData['user_level']) {
+                                        case 1:
+                                            echo "Guest";
+                                            break;
+                                        case 2:
+                                            echo "Member";
+                                            break;
+                                        case 3:
+                                            echo "Council";
+                                            break;
+                                        case 4:
+                                            echo "Admin";
+                                            break;
+                                    }
+                                ?></td>
                                 <td></td>
                             </tr>
-                        <?php } ?>
+                        <?php endforeach; } ?>
+                    <?php } ?>
                     </tbody>
                 </table>
             </div>
-        </section>
-
-        <section id="myplace" class="hidden">
-            <h2>Mijn Account</h2>
-
+            
         </section>
 
         <section id="error404" class="hidden">
             <h2>Error 404</h2>
             <p>Zo te zien ben je op een pagina geland welke nog niet bestaat, of onlangs is verwijderd.</p>
         </section>
-
-        <footer>
-            
-        </footer>
 
         <!-- Wie JS heeft uitgeschakeld krijgt een site melding te zien -->
         <noscript>

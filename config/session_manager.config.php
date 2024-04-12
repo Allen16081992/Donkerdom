@@ -2,6 +2,16 @@
     if (!isset($_SESSION)) {
         session_start();
     }
+
+    // Handle logout operations
+    if (isset($_POST['logout'])) {
+        // Wipe everything session related.
+        session_unset(); session_destroy();
+
+        // Push back to homepage.
+        header('location: ./index.html');
+        exit();
+    }
    
     // Verification for page permission
     function verify_UnauthorizedAccess() {

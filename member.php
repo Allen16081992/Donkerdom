@@ -36,6 +36,7 @@
     </header>
 
     <main>
+        <?php server_Messenger(); ?>
         <!-- User Profile Form -->
         <section id="user">
             <div class="form-window">
@@ -57,12 +58,12 @@
 
                         <!-- Only for Admin/Council -->
                         <?php if ($_SESSION['session_data']['rank'] > 2) { ?>
-                        <select id="rankDropdown" name="rank">
-                            <option value="default">Rechten</option>
-                            <option value="User">Guest</option>
-                            <option value="User">Member</option>
-                            <option value="User">Council</option>
-                            <option value="User">Admin</option>
+                        <select id="rankDropdown" name="user_level">
+                            <option selected>Rechten</option>
+                            <option value="1">Guest</option>
+                            <option value="2">Member</option>
+                            <option value="3">Council</option>
+                            <option value="4">Admin</option>
                         </select>
                         <?php } ?>
                         <!---------------------------->
@@ -73,33 +74,51 @@
 
                 <!-- Een Lid Aanpassen -->
                 <?php } elseif (isset($_POST['editMember'])) { ?>
+                    <?php require_once './models/get_listed_one.model.php'; ?>
                     <h2>Een Lid Wijzigen</h2>
                     <form action="controllers/submission_handler.control.php" method="post">
                         <?php server_Messenger(); ?>
                         <label for="firstname">Voornaam</label>
-                        <input type="text" name="firstname" placeholder="Voornaam" required>
+                        <input type="text" name="firstname" placeholder="Voornaam" value="<?= $listedOne['firstname']; ?>">
                         <label for="lastname">Achteraam</label>
-                        <input type="text" name="lastname" placeholder="Achternaam" required>
+                        <input type="text" name="lastname" placeholder="Achternaam" value="<?= $listedOne['lastname']; ?>">
                         <label for="username">Gebruikersnaam</label>
-                        <input type="text" name="username" placeholder="Gebruikersnaam" required>
+                        <input type="text" name="username" placeholder="Gebruikersnaam" value="<?= $listedOne['username']; ?>">
                         <label for="email">E-mailadres</label>
-                        <input type="email" name="email" placeholder="Email" required>
+                        <input type="email" name="email" placeholder="Email" value="<?= $listedOne['email']; ?>">
                         <label for="pwd">Wachtwoord</label>
-                        <input type="password" name="pwd" placeholder="Wachtwoord" required>
+                        <input type="password" name="pwd" placeholder="Vereist*" required>
 
                         <!-- Only for Admin/Council -->
                         <?php if ($_SESSION['session_data']['rank'] > 2) { ?>
-                        <select id="rankDropdown" name="rank">
-                            <option value="default">Rechten</option>
-                            <option value="User">Guest</option>
-                            <option value="User">Member</option>
-                            <option value="User">Council</option>
-                            <option value="User">Admin</option>
+                        <select id="rankDropdown" name="user_level">
+                            <option value="<?= $listedOne['user_level']; ?>" selected>
+                            <?php 
+                                switch($listedOne['user_level']) {
+                                    case 1:
+                                        echo "Guest";
+                                        break;
+                                    case 2:
+                                        echo "Member";
+                                        break;
+                                    case 3:
+                                        echo "Council";
+                                        break;
+                                    case 4:
+                                        echo "Admin";
+                                        break;
+                            } ?>
+                            </option>
+                            <option>Rechten</option>
+                            <option value="1">Guest</option>
+                            <option value="2">Member</option>
+                            <option value="3">Council</option>
+                            <option value="4">Admin</option>
                         </select>
                         <?php } ?>
                         <!---------------------------->
 
-                        <input type="hidden" name="uid" value="<?= $uid ?>">
+                        <input type="hidden" name="uid" value="<?= $_POST['uid'] ?>">
                         <button type="submit" id="nextBtn" name="editMember">Lid Wijzigen</button>
                         <span style="opacity:0;">Nog geen account? maak er hier eentje aan</span>
                     </form>
@@ -113,7 +132,6 @@
                         
                         <input type="hidden" name="uid" value="<?= $_POST['uid'] ?>">
                         <button type="submit" id="nextBtn" name="undoMember">Lid Verwijderen</button>                   
-
                         <span style="opacity:0;">Nog geen account? maak er hier eentje aan</span>
                     </form>
                 <?php } ?>

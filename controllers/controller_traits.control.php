@@ -1,16 +1,7 @@
 <?php // Dhr. Allen Pieter
     trait Rebounds {
-        private function reboundAssigner() {
-            // Verify where the request came from and redirect to the appropriate page
-            if (isset($_POST['login'])) {
-                header('location: ../login.php');
-            }
-            elseif (isset($_POST['signup'])) {
-                header('location: ../signup.php');
-            }
-            elseif (isset($_POST['addMember']) || isset($_POST['editMember']) || isset($_POST['undoMember'])) {
-                header('location: ../member.php');
-            }
+        private function reboundPath($route) {
+            header($route);
             exit();
         }
     }

@@ -23,31 +23,56 @@
     <link rel="manifest" href="assets/images/favicon/site.webmanifest">
     <!-- Styling Sheets -->
     <link rel="stylesheet" href="assets/css/default.css">
-    <title>Login | Dark Sanctuary</title>
+    <title>Account | Dark Sanctuary</title>
 </head>
 
 <body>
     <header>
-        <div class="logo"><a href="index.html"><img src="assets/images/hiligen-logo2.webp" alt="Games Association Logo"></a></div>
+        <div class="logo"><a><img src="assets/images/hiligen-logo2.webp" alt="Games Association Logo"></a></div>
         <nav>
-            <a href="#" class="current">Mijn Raad</a>
-            <a href="index.html">Terug</a>
+            <a class="current">Mijn Account</a>
+            <a href="council.php">Terug</a>
         </nav>
     </header>
 
     <main>
-        <section id="login">
+        <section id="profile">
+            <?php require_once './models/getmember.model.php'; ?>
+            <h2>Account Wijzigen</h2>
             <div class="form-window">
-                <h2>Inloggen op Mijn Raad</h2>
+                <?php switch($myData['user_level']) {
+                        case 1:
+                            echo "<p>Guest</p>";
+                            break;
+                        case 2:
+                            echo "<p>Member</p>";
+                            break;
+                        case 3:
+                            echo "<p>Council</p>";
+                            break;
+                        case 4:
+                            echo "<p>Admin</p>";
+                            break;
+                } ?>
                 <form action="controllers/submission_handler.control.php" method="post">
                     <?php server_Messenger(); ?>
+                    <label for="firstname">Voornaam</label>
+                    <input type="text" name="firstname" placeholder="Voornaam" value="<?= $myData['firstname']; ?>">
+                    <label for="lastname">Achteraam</label>
+                    <input type="text" name="lastname" placeholder="Achternaam" value="<?= $myData['lastname']; ?>">
                     <label for="username">Gebruikersnaam</label>
-                    <input type="text" name="username" placeholder="Gebruikersnaam" required>
+                    <input type="text" name="username" placeholder="Gebruikersnaam" value="<?= $myData['username']; ?>">
+                    <label for="email">E-mailadres</label>
+                    <input type="email" name="email" placeholder="Email" value="<?= $myData['email']; ?>">
                     <label for="pwd">Wachtwoord</label>
-                    <input type="password" name="pwd" placeholder="Wachtwoord" required>
+                    <input type="password" name="pwd" placeholder="Wachtwoord">     
 
-                    <button type="submit" name="login">Inloggen</button>
-                    <span>Nog geen account? <a href="signup.php">maak er hier eentje aan</a></span>
+                    <input type="hidden" name="user_level" value="<?= $_SESSION['session_data']['rank']; ?>">
+                    <input type="hidden" name="uid" value="<?= $_SESSION['session_data']['user_id']; ?>">
+
+                    <button type="submit" id="prevBtn" name="editMyself">Opslaan</button>
+                    <button type="submit" id="nextBtn" name="close">Account Sluiten</button>
+                    <span style="opacity:0;">Nog geen account? maak er hier eentje aan</span>
                 </form>
             </div>
         </section>

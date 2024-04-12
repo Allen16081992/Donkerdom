@@ -48,16 +48,7 @@
                         <span class="step"></span>
                         <span class="step"></span>
                     </div>
-                    <?php
-                        if (isset($_SESSION['error'])) {
-                            echo '<div class="error-msg">'.$_SESSION['error'].'</div>';
-                            $_SESSION['error'] = null; // Clear the server message on page reload
-                        }
-                        if (isset($_SESSION['success'])) {
-                            echo '<div class="success-msg">'.$_SESSION['success'].'</div>';
-                            $_SESSION['success'] = null; // Clear the server message on page reload
-                        }
-                    ?>
+                    <?php server_Messenger(); ?>
                     <div class="tab">
                         <label for="firstname">Voornaam</label>
                         <input type="text" name="firstname" placeholder="Voornaam" required>

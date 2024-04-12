@@ -16,12 +16,12 @@
             if($this->emptyCheck()) {
                 // Empty input, no values given for account.
                 $_SESSION['error'] = 'No '.$this->emptyCheck().' provided.';
-                $this->reboundAssigner();
+                $this->reboundPath('location: ../signup.php');
             }
             if($this->invalidCheck()) {
                 // Empty input, no values given for account.
                 $_SESSION['error'] = ''.$this->invalidCheck().'';
-                $this->reboundAssigner();
+                $this->reboundPath('location: ../signup.php');
             }
             $this->verifyMember($this->formFields);
         }

@@ -21,11 +21,15 @@
             // Verify if request was succesfull
             if(!$stmt->execute([$uid, $email])) {
                 $_SESSION['error'] = "Our servers are down for maintenance.<br> Please contact the administrator.";
-                $this->reboundAssigner();
+
+                // Head to the signup page
+                $this->reboundPath('location: ../signup.php');
             }
             if ($stmt->fetchColumn() > 0) {
                 $_SESSION['error'] = "This username is already in use.";
-                $this->reboundAssigner();
+
+                // Head to the signup page
+                $this->reboundPath('location: ../signup.php');
             }
 
             // If no matching result is found, create the user
@@ -65,10 +69,14 @@
             // Execute the prepared statement with the provided variables.
             if(!$stmt->execute([$uid, $fname, $lname, $HashThisNOW, $email, $rank])) {
                 $_SESSION['error'] = "Account creation failed.<br> Please contact the administrator.";
-                $this->reboundAssigner();
+
+                // Head to the signup page
+                $this->reboundPath('location: ../signup.php');
             }
 
             $_SESSION['success'] = "Bedankt voor het aanmelden.<br> Welkom bij Team Dark Sanctuary!<br>En vergeet onze vleermuis niet te aaien!";
-            $this->reboundAssigner();
+            
+            // Head to the login page
+            $this->reboundPath('location: ../login.php');
         }
     }
