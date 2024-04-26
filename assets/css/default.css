@@ -82,7 +82,9 @@ button[name="create"], #prevBtn, #nextBtn, textarea {
     border-radius: 50%;
     display: inline-block;
     opacity: 0.5;
-} .step.active {opacity: 1;} .step.finish {background-color: #04AA6D;}
+} 
+.step.active {opacity: 1;} 
+.step.finish {background-color: #04AA6D;}
 .rotator {
     width:100%;
     display: flex;
@@ -185,6 +187,25 @@ table tr:hover td {
 }
 .trash {
     background-color: #dc3545;
+}
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+.pagination a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+.pagination a:hover {
+    background-color: #ddd;
+} 
+.pagination a.active {
+    background-color: #007bff; /* Blue background */
+    color: #fff; /* White text */
 }
 
 @media only screen and (max-width: 500px) {

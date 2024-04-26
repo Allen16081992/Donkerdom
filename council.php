@@ -28,7 +28,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
     <title>Mijn Raad | Dark Sanctuary</title>
     <script defer src="assets/js/section-handler.js"></script>
-    <script defer src="assets/js/table-filter.js"></script>
+    
 </head>
 
 <body>
@@ -187,8 +187,11 @@
                     <?php } ?>
                     </tbody>
                 </table>
+                <div class="pagination">
+                    <!-- Placeholder for dynamically generated pagination links -->
+                </div>
             </div>
-            
+            <script defer src="assets/js/table-filter.js"></script>
         </section>
 
         <section id="error404" class="hidden">
