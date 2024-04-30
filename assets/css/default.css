@@ -67,7 +67,7 @@ input[type="email"],
 input[type="password"],
 button[name="login"], 
 button[name="create"], #prevBtn, #nextBtn, textarea { 
-    padding: 0.6em 0.6em;
+    padding: 0.6em;
     font-size: 1em;
     width: 100%;
 }

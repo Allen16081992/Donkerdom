@@ -11,7 +11,7 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    /* box-sizing: border-box; */
 }
 
 body {
@@ -22,19 +22,20 @@ body {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+    padding: 20px;
 }
 
 .profile-card {
     flex: 1;
-    margin: 20px;
+    margin: 8px;
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 8px;
 }
 
 .avatar {
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
     background-color: gray; /* Placeholder color */
     border-radius: 50%; /* Creates a round shape */
 }
@@ -42,14 +43,14 @@ body {
 button {
     padding: 8px 16px;
     border: none;
-    background-color: #007bff;
+    background-color: rgb(25,162,181);
     color: #fff;
     cursor: pointer;
     border-radius:5px;
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: rgb(62,149,163);
 }
 
 /* Adjust size and shape for specific cards */
@@ -72,18 +73,25 @@ button:hover {
 .profile-card form {
     /* max-width: 5rem; */
     max-width:100%;
+    box-sizing: border-box;
+}
+
+form {
+    margin:10px;
 }
 form input {
     width: 100%;
 }
 input[type=text] {
-  width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  box-sizing: border-box;
+  width: 97%;
+  padding: 0.6em;
+  font-size: 1em;
+  margin-bottom:8px;
   border: none;
-  background:rgb(208, 222, 223);
-  border-bottom: 2px solid black;
+  border-bottom: 1px solid rgb(176, 174, 174);
+}
+input[type=text]:focus {
+  outline:none;
 }
 
 /* Responsive */
@@ -104,15 +112,12 @@ input[type=text] {
 <body>
     <div class="container">
         <div class="profile-card">
-            <h4>Foto</h4>
             <!-- Placeholder for avatar -->
             <div class="avatar"></div>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            <strong>Jane Donetsk</strong>
+            <p>Full Stack Developer</p>
         </div>
         <div class="profile-card">
-            <h4>Gegevens</h4>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-            <!-- Placeholder for user details -->
             <div class="details">
                 <?php
                     if(isset($_POST['edit'])) {
@@ -122,27 +127,41 @@ input[type=text] {
                                 <input type="text" name="fullname">
                                 <label for="email">Email</label>
                                 <input type="text" name="email">
-                                <label for="phone">Mobile Number</label>
+                                <label for="phone">Phone</label>
                                 <input type="text" name="phone" min="1" max="11">
                                 <label for="postal">Postalcode</label>
                                 <input type="text" name="postal">
                                 <label for="city">City</label>
                                 <input type="text" name="city" placeholder="City">
                                 <button name="save">Opslaan</button>
+                                <button name="cancel" style="background:grey;">X</button>
                             </form>
                         ';
                     }
                     else {
-                        echo '
-                            <p><strong>Full Name</strong> John Doe</p>
-                            <p><strong>Email</strong> johndoe@example.com</p>
-                            <p><strong>Mobile</strong> +1234567890</p>
-                            <p><strong>Address</strong> 123 Main Street, City, Country</p>
-                            <form action="" method="post">
+                        echo ' 
+                            <form action="" method="post">                      
+                                <label for="fullname">Full Name</label>
+                                <input type="text" name="fullname" disabled>
+                                <label for="email">Email</label>
+                                <input type="text" name="email" disabled>
+                                <label for="phone">Phone</label>
+                                <input type="text" name="phone" min="1" max="11" disabled>
+                                <label for="postal">Postalcode</label>
+                                <input type="text" name="postal" disabled>
+                                <label for="city">City</label>
+                                <input type="text" name="city" placeholder="City" disabled>
                                 <button name="edit">Edit</button>
                             </form>
                         ';
                     }
+                    // <p><strong>Full Name</strong> John Doe</p>
+                    // <p><strong>Email</strong> johndoe@example.com</p>
+                    // <p><strong>Mobile</strong> +1234567890</p>
+                    // <p><strong>Address</strong> 123 Main Street, City, Country</p>
+                    // <form action="" method="post">
+                    //     <button name="edit">Edit</button>
+                    // </form>
                 ?>
             </div>
         </div>
