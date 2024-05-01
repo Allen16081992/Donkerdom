@@ -54,7 +54,7 @@ section, .form-window form {
 }
 .form-window form {
     border:2px solid grey;
-    border-radius:15px;
+    border-radius:10px;
     max-width:23rem;
 }
 .form-window input, button, textarea {
@@ -62,7 +62,7 @@ section, .form-window form {
     margin-top: 5px;
 }
 input { margin-bottom:5px; }
-input[type="text"],
+.form-window input[type="text"],
 input[type="email"],
 input[type="password"],
 button[name="login"], 
@@ -71,6 +71,7 @@ button[name="create"], #prevBtn, #nextBtn, textarea {
     font-size: 1em;
     width: 100%;
 }
+button {cursor: pointer;}
 
 /* Signup Form */
 .step {
@@ -110,11 +111,11 @@ input.invalid {background-color: #ffdddd;}
 }
 
 /* Table */
-.container {
+.table-container {
     background-color: #fff;
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .filter-container {
@@ -208,7 +209,90 @@ table tr:hover td {
     color: #fff; /* White text */
 }
 
-@media only screen and (max-width: 500px) {
+/* Profile Page */
+.container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 20px;
+    align-items: left;
+    text-align: left;
+}
+
+.profile-card {
+    flex: 1;
+    margin: 8px;
+    padding: 20px;
+    border-radius: 8px;   
+    background-color: #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.avatar {
+    width: 150px;
+    height: 150px;
+    background-color: gray; /* Placeholder color */
+    border-radius: 50%; /* Creates a round shape */
+}
+
+.profile-card form label {
+    margin-left:9px;
+}
+.profile-card form button {
+    padding: 8px 16px;
+    color: #fff;
+    /* cursor: pointer; */
+    border: none;
+    border-radius:5px;
+    background-color: rgb(25,162,181);
+}
+
+.profile-card form button:hover {
+    background-color: rgb(62,149,163);
+}
+
+/* Adjust size and shape for specific cards */
+.profile-card:nth-child(odd) {
+    flex-basis: calc(30% - 40px); /* Set width for odd cards (1 and 3) */
+}
+
+.profile-card:nth-child(even) {
+    flex-basis: calc(50% - 40px); /* Set width for even cards (2 and 4) */
+    border-radius: 8px; /* Make even cards rectangular */
+}
+
+.profile-card:nth-child(1) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.profile-card form {
+    max-width:100%;
+    box-sizing: border-box;
+}
+
+.profile-card form input {
+    width: 100%;
+    padding: 0.6em;
+    font-size: 1em;
+    box-sizing: border-box;
+}
+.profile-card form input[type="text"], input[type="password"] {
+  margin-bottom:8px;
+  border: none;
+  border-bottom: 1px solid rgb(176, 174, 174);
+}
+.profile-card form input:focus {
+  outline:none;
+}
+.input-group {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+@media only screen and (max-width: 600px) {
     .logo img {max-width:100px;}
     nav a {
         width: 43%; /* Make links take full width on smaller screens */
@@ -252,18 +336,16 @@ table tr:hover td {
         text-align: center;
         border: none;
     }
-    /* .container {
-        width:100%;
+    
+    .container {
+        flex-direction: column;
+        align-items: center;
     }
-    td:nth-child(1), td:nth-child(4), td:nth-child(6), th:nth-child(1), th:nth-child(4), th:nth-child(6) {
-      display: none;
-    } */
+
+    .profile-card {
+        flex-basis: calc(100% - 40px);
+    }
 }
-/* @media only screen and (max-width: 600px) {
-    td:nth-child(6), th:nth-child(6) {
-        display: none;
-    }
-} */
 @media only screen and (max-width: 800px) {
     td:nth-child(5), td:nth-child(6), th:nth-child(5), th:nth-child(6) {
         display: none;

@@ -28,7 +28,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
     <title>Mijn Raad | Dark Sanctuary</title>
     <script defer src="assets/js/section-handler.js"></script>
-    
+    <script defer src="assets/js/profile-handler.js"></script>
 </head>
 
 <body>
@@ -44,16 +44,13 @@
 
     <main>
         <?php server_Messenger(); ?>
-        <section id="home" class="current">
-            <h2>Raadkamer</h2>
-            <p>De officiële Hoge Raad om te stemmen.</p>
-        </section>
-
         <section id="profile" class="hidden">
-            <?php require_once './models/getmember.model.php'; ?>
-            <h2>Account Wijzigen</h2>
-            <div class="form-window">
-                <?php switch($myData['user_level']) {
+            <div class="container">
+                <div class="profile-card">
+                    <!-- Placeholder for avatar -->
+                    <div class="avatar"></div>
+                    <?php require_once './models/getmember.model.php'; ?>
+                    <?php switch($myData['user_level']) {
                         case 1:
                             echo "<p>Guest</p>";
                             break;
@@ -66,33 +63,80 @@
                         case 4:
                             echo "<p>Admin</p>";
                             break;
-                } ?>
+                    } ?>
+                    <strong>Jane Donetsk</strong>
+                    <p>Full Stack Developer</p>
+                    <form>
+                        <button id="closeAccount" style="background:grey;" name="closeAccount">Account Sluiten</button>
+                    </form>
+                    <span style="opacity:0;">Nog geen account? maak er hier eentje aan aan aan aan aan aann</span>
+                </div>
+
+                <div class="profile-card">
+                    <div class="details">
+                        <form id="myDetails" action="controllers/submission_handler.control.php" method="post"> 
+                        <label for="username">Gebruikersnaam</label>
+                            <input type="hidden" name="uid" value="<?= $_SESSION['session_data']['user_id']; ?>">
+                            <input type="hidden" name="user_level" value="<?= $_SESSION['session_data']['rank']; ?>">
+
+                            <input type="text" name="username" placeholder="Gebruikersnaam" value="<?= $myData['username']; ?>" disabled>                     
+                            <label for="firstname">Naam</label>
+                            <input type="text" name="firstname" placeholder="Voornaam" value="<?= $myData['firstname']; ?>" disabled>
+                            <label for="lastname">Achternaam</label>
+                            <input type="text" name="lastname" placeholder="Achternaam" value="<?= $myData['lastname']; ?>" disabled>
+                            <label for="email">Email</label>
+                            <input type="text" name="email" placeholder="Email" value="<?= $myData['email']; ?>" disabled>
+                            <label for="pwd">Wachtwoord</label>
+                            <input type="password" name="pwd" placeholder="*****" disabled> 
+                            <button id="editButton" name="edit">Wijzigen</button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="profile-card">
+                    <h4>Profile 3</h4>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                </div>
+
+                <div class="profile-card">
+                    <h4>Profile 4</h4>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                </div>
+            </div>
+            
+            <!-- <h2>Account Wijzigen</h2>
+            <div class="form-window">
                 <form action="controllers/submission_handler.control.php" method="post">
                     <label for="firstname">Voornaam</label>
-                    <input type="text" name="firstname" placeholder="Voornaam" value="<?= $myData['firstname']; ?>">
+                    <input type="text" name="firstname" placeholder="Voornaam" >
                     <label for="lastname">Achteraam</label>
-                    <input type="text" name="lastname" placeholder="Achternaam" value="<?= $myData['lastname']; ?>">
+                    <input type="text" name="lastname" placeholder="Achternaam" >
                     <label for="username">Gebruikersnaam</label>
-                    <input type="text" name="username" placeholder="Gebruikersnaam" value="<?= $myData['username']; ?>">
+                    <input type="text" name="username" placeholder="Gebruikersnaam" >
                     <label for="email">E-mailadres</label>
-                    <input type="email" name="email" placeholder="Email" value="<?= $myData['email']; ?>">
+                    <input type="email" name="email" placeholder="Email" >
                     <label for="pwd">Wachtwoord</label>
                     <input type="password" name="pwd" placeholder="Wachtwoord">     
 
-                    <input type="hidden" name="user_level" value="<?= $_SESSION['session_data']['rank']; ?>">
-                    <input type="hidden" name="uid" value="<?= $_SESSION['session_data']['user_id']; ?>">
+                    <input type="hidden" name="user_level" >
+                    <input type="hidden" name="uid" >
 
                     <button type="submit" id="prevBtn" name="editMyself">Opslaan</button>
                     <a href="account.php">Account Sluiten</a>
                     <span style="opacity:0;">Nog geen account? maak er hier eentje aan</span>
                 </form>
-            </div>
+            </div> -->
+        </section>
+
+        <section id="home" class="current">
+            <h2>Raadkamer</h2>
+            <p>De officiële Hoge Raad om te stemmen.</p>
         </section>
     
         <section id="manage" class="hidden">
             <?php require_once './models/getdata.model.php'; ?>
             <h2>Leden Lijst</h2>
-            <div class="container">
+            <div class="table-container">
                 <div class="filter-container">
                     <select id="filterDropdown">
                         <option value="all" selected>Show All</option>

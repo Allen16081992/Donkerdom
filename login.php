@@ -38,7 +38,7 @@
     <main>
         <section id="login">
             <div class="form-window">
-                <h2>Inloggen op Mijn Raad</h2>
+                <h2>Inloggen</h2>
                 <form action="controllers/submission_handler.control.php" method="post">
                     <?php server_Messenger(); ?>
                     <label for="username">Gebruikersnaam</label>
