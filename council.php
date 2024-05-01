@@ -64,9 +64,9 @@
                             echo "<p>Admin</p>";
                             break;
                     } ?>
-                    <strong>Jane Donetsk</strong>
+                    <strong><?= $myData['firstname'].' '.$myData['lastname']; ?></strong>
                     <p>Full Stack Developer</p>
-                    <form>
+                    <form action="logout.php" method="post">
                         <button id="closeAccount" style="background:grey;" name="closeAccount">Account Sluiten</button>
                     </form>
                     <span style="opacity:0;">Nog geen account? maak er hier eentje aan aan aan aan aan aann</span>

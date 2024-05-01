@@ -1,7 +1,7 @@
 :root {
     --default:#007bff;
-    --create:#28a745;
-    --trash:#dc3545;
+    --edit:rgb(25,162,181);
+    --edit-hover:rgb(62,149,163);
 }
 body {
     font-family: Arial, sans-serif;
@@ -11,9 +11,9 @@ body {
     overflow-y: scroll;
 }
 header {
-    background-color: #333;
     padding: 20px 0;
     text-align: center;
+    background-color: #333;
 }
 nav {
     display: flex;
@@ -31,20 +31,18 @@ nav a {
 nav a:hover, nav a.current {
     background-color: #555;
 }
-nav a.current {
-    cursor: default;
-}
+nav a.current { cursor: default; }
 .logo {
     text-align: center;
     margin-bottom: 20px;
-}
-.logo a {
-    display: block;
 }
 .logo img {
     max-width: 10%;
     height: auto;
 }
+.logo a { display: block; }
+button { cursor: pointer; }
+
 section, .form-window form {
     display: flex;
     flex-direction: column;
@@ -57,21 +55,29 @@ section, .form-window form {
     border-radius:10px;
     max-width:23rem;
 }
-.form-window input, button, textarea {
+.form-window input:focus { outline:none; }
+.form-window input[type="text"],
+.form-window input[type="email"],
+.form-window input[type="password"],
+.form-window textarea {
+    box-sizing: border-box;
+    margin: 5px 0;
+    padding: 0.6em;
+    font-size: 1em;
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid rgb(176, 174, 174);
+}
+.form-window input[type="checkbox"] {
+    width: auto; 
+}
+.form-window button, #prevBtn, #nextBtn {
     box-sizing: border-box;
     margin-top: 5px;
-}
-input { margin-bottom:5px; }
-.form-window input[type="text"],
-input[type="email"],
-input[type="password"],
-button[name="login"], 
-button[name="create"], #prevBtn, #nextBtn, textarea { 
     padding: 0.6em;
     font-size: 1em;
     width: 100%;
 }
-button {cursor: pointer;}
 
 /* Signup Form */
 .step {
@@ -90,15 +96,15 @@ button {cursor: pointer;}
     width:100%;
     display: flex;
     justify-content: space-between;
-} #prev, #next { width:35%; } #next { float:right; }
+}
 input.invalid {background-color: #ffdddd;}
 .hidden, .tab { display: none; }
 
 .error-msg, .success-msg { 
     text-align: center;
-    position:relative;
+    position:absolute;
     background:transparent;
-    min-height:5rem; 
+    height:auto; 
     width:100%;
 }
 .success-msg {
@@ -125,12 +131,12 @@ input.invalid {background-color: #ffdddd;}
     margin-bottom: 20px;
 }
 
-.filter-container input[type="text"] {
+/* .filter-container input[type="text"] {
     padding: 10px;
     border-radius: 4px;
     border: 1px solid #ccc;
     width: 70%;
-}
+} */
 
 #filterDropdown  {
     margin-top:-5px;
@@ -146,11 +152,10 @@ input.invalid {background-color: #ffdddd;}
 
 .filter-btn {
     padding: 12px 5px;
-    background-color: #007bff;
+    background-color: var(--default);
     color: #fff;
     border: none;
     border-radius: 4px;
-    cursor: pointer;
     margin-top:-5px;
 }
 
@@ -166,13 +171,12 @@ table th, table td {
 }
 
 table th {
-    background-color: #007bff;
+    background-color: var(--default);
     color: #fff;
 }
 
 table tr:hover td {
     background-color: #cce5ff; /* Change background color of cells */
-    color: #333; /* Change text color of cells */
 }
 
 .edit, .trash {
@@ -181,7 +185,6 @@ table tr:hover td {
     color: #fff;
     border: none;
     border-radius: 4px;
-    cursor: pointer;
 }
 .edit {
     background-color: #28a745;
@@ -205,7 +208,7 @@ table tr:hover td {
     background-color: #ddd;
 } 
 .pagination a.active {
-    background-color: #007bff; /* Blue background */
+    background-color: var(--default); /* Blue background */
     color: #fff; /* White text */
 }
 
@@ -244,23 +247,22 @@ table tr:hover td {
     /* cursor: pointer; */
     border: none;
     border-radius:5px;
-    background-color: rgb(25,162,181);
+    background-color: var(--edit);
 }
 
 .profile-card form button:hover {
-    background-color: rgb(62,149,163);
+    background-color: var(--edit-hover);
 }
 
 /* Adjust size and shape for specific cards */
 .profile-card:nth-child(odd) {
     flex-basis: calc(30% - 40px); /* Set width for odd cards (1 and 3) */
 }
-
 .profile-card:nth-child(even) {
     flex-basis: calc(50% - 40px); /* Set width for even cards (2 and 4) */
-    border-radius: 8px; /* Make even cards rectangular */
 }
 
+/* Adjust alignment for avatar card */
 .profile-card:nth-child(1) {
     display: flex;
     flex-direction: column;
@@ -268,10 +270,10 @@ table tr:hover td {
     text-align: center;
 }
 
-.profile-card form {
+/* .profile-card form {
     max-width:100%;
     box-sizing: border-box;
-}
+} */
 
 .profile-card form input {
     width: 100%;

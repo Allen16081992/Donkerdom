@@ -66,3 +66,19 @@ document.addEventListener('DOMContentLoaded', function () {
     // We call the first section of pages 'home' to indicate the main or most important content.
     paintSection('home');
 });
+
+// JavaScript to remove messages after a certain duration
+window.onload = function() {
+    var serverMsg = document.getElementById('server-msg');
+
+    // Set timeout to remove error message after 5 seconds
+    if (serverMsg) {
+        setTimeout(function() {
+            serverMsg.style.transition = 'opacity 0.3s ease'; 
+            serverMsg.style.opacity = '0'; 
+            setTimeout(function() {
+                serverMsg.style.display = 'none'; 
+            }, 4500);
+        }, 5000); // 5000 milliseconds = 5 seconds
+    }
+};

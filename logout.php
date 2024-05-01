@@ -36,11 +36,27 @@
 
     <main>
         <section>
-            <h2>Weet je zeker dat je wilt uitloggen?</h2>
-            <form action="" method="post">
-                <button type="submit" id="nextBtn" name="logout">Uitloggen</button>
-                <!-- The session_manager.config handles the rest -->
-            </form>
+            <?php
+                if (isset($_POST['closeAccount'])) {
+                    echo '
+                        <h2>Weet je zeker dat je jouw account wilt sluiten?</h2>
+                        <p>Je gegevens worden zurgvuldig gewist uit ons systeem en je account wordt verwijderd.<br>
+                        Deze handeling kan niet ongedaan worden gemaakt.</p>
+                        <form action="controllers/submission_handler.control.php" method="post">
+                            <button type="submit" id="nextBtn" name="close">Uitloggen</button>
+                            <!-- The session_manager.config handles the rest -->
+                        </form>
+                    ';
+                } else {
+                    echo '
+                        <h2>Weet je zeker dat je wilt uitloggen?</h2>
+                        <form action="" method="post">
+                            <button type="submit" id="nextBtn" name="logout">Uitloggen</button>
+                            <!-- The session_manager.config handles the rest -->
+                        </form>     
+                    ';
+                }
+            ?>
         </section>
     </main>
 </body>

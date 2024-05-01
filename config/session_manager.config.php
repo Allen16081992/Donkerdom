@@ -43,11 +43,11 @@
     // Server message cleanup function
     function server_Messenger() {
         if (isset($_SESSION['error'])) {
-            echo '<div class="error-msg">'.$_SESSION['error'].'</div>';
+            echo '<div id="server-msg" class="error-msg">'.$_SESSION['error'].'</div>';
             $_SESSION['error'] = null; // Clear the server message on page reload
         }
         if (isset($_SESSION['success'])) {
-            echo '<div class="success-msg">'.$_SESSION['success'].'</div>';
+            echo '<div id="server-msg" class="success-msg">'.$_SESSION['success'].'</div>';
             $_SESSION['success'] = null; // Clear the server message on page reload
         }
     }
