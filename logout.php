@@ -40,11 +40,11 @@
                 if (isset($_POST['closeAccount'])) {
                     echo '
                         <h2>Weet je zeker dat je jouw account wilt sluiten?</h2>
-                        <p>Je gegevens worden zurgvuldig gewist uit ons systeem en je account wordt verwijderd.<br>
+                        <p>Je account en gegevens worden zorgvuldig uit ons systeem verwijderd.<br>
                         Deze handeling kan niet ongedaan worden gemaakt.</p>
                         <form action="controllers/submission_handler.control.php" method="post">
-                            <button type="submit" id="nextBtn" name="close">Uitloggen</button>
-                            <!-- The session_manager.config handles the rest -->
+                            <input type="hidden" name="uid" value="'.$_SESSION['session_data']['user_id'].'">
+                            <button type="submit" id="nextBtn" name="shutAcc">Account Sluiten</button>
                         </form>
                     ';
                 } else {
@@ -52,11 +52,11 @@
                         <h2>Weet je zeker dat je wilt uitloggen?</h2>
                         <form action="" method="post">
                             <button type="submit" id="nextBtn" name="logout">Uitloggen</button>
-                            <!-- The session_manager.config handles the rest -->
                         </form>     
                     ';
                 }
             ?>
+            <!-- The session_manager.config handles the rest -->
         </section>
     </main>
 </body>

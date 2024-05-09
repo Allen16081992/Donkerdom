@@ -1,18 +1,18 @@
 "use strict";
 document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('myDetails');
-    const editButton = document.getElementById('editButton');
+    const editProfile = document.getElementById('editProfile');
 
-    editButton.addEventListener('click', function(event) {
-        if (editButton.name === 'edit') {
+    editProfile.addEventListener('click', function(event) {
+        if (editProfile.name === 'edit') {
             event.preventDefault();
 
             const inputs = form.querySelectorAll('input');
             inputs.forEach(function(input) {
                 input.disabled = false;
             });
-            editButton.innerText = 'Opslaan';
-            editButton.name = 'save';
+            editProfile.innerText = 'Opslaan';
+            editProfile.name = 'save';
             
             const cancelButton = document.createElement('button');
             cancelButton.name = 'cancel';
@@ -26,8 +26,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     input.disabled = true;
                 });
                 form.removeChild(cancelButton);
-                editButton.innerText = 'Wijzigen';
-                editButton.name = 'edit';
+                editProfile.innerText = 'Wijzigen';
+                editProfile.name = 'edit';
             });
         }
     });

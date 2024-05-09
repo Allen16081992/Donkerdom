@@ -42,13 +42,7 @@
             $lc = new UpdateControl($formFields);
             $lc->verifyEdit();
 
-        } elseif (isset($_POST['undoMember'])) {
-            require_once '../models/delete.model.php';
-            require_once './delete.control.php';
-            $lc = new DeleteControl($formFields);
-            $lc->deleteMember();
-
-        } elseif (isset($_POST['close'])) {
+        } elseif (isset($_POST['undoMember']) || isset($_POST['shutAcc'])) {
             require_once '../models/delete.model.php';
             require_once './delete.control.php';
             $lc = new DeleteControl($formFields);

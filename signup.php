@@ -26,7 +26,9 @@
     <!-- Styling Sheets -->
     <link rel="stylesheet" href="assets/css/default.css">
     <title>Signup | Dark Sanctuary</title>
+    <!-- Javascript -->
     <script defer src="assets/js/form.multi-step.js"></script>
+    <script defer src="assets/js/section-handler.js"></script>
 </head>
 
 <body>
@@ -39,6 +41,7 @@
     </header>
 
     <main>
+        <?php server_Messenger(); ?>
         <section id="signup" class="current">
             <div class="form-window">
                 <h2>Een Nieuw Account</h2>
@@ -48,7 +51,6 @@
                         <span class="step"></span>
                         <span class="step"></span>
                     </div>
-                    <?php server_Messenger(); ?>
                     <div class="tab">
                         <label for="firstname">Voornaam</label>
                         <input type="text" name="firstname" placeholder="Voornaam" required>

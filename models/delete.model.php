@@ -8,32 +8,43 @@
         use Rebounds;
 
         // Update the new member in the Database
-        protected function unsetMember($formFields) {
+        protected function unsetMember($formFields, $operator) {
             // Get the singleton instance of the Database class to establish a database connection.
             $db = Database::getInstance();
 
             // Prepare the SQL statement.
             $stmt = $db->connect()->prepare('DELETE FROM members WHERE userID = :userID');
             $stmt->bindParam(":userID", $formFields['uid']);
-            $stmt->execute(); 
-        
-            // Set success message in session
-            $_SESSION['success'] = 'Lid verwijderd';
+            $stmt->execute();
 
-            // Head to the council page.
-            $this->reboundPath('location: ../council.php');
-        } 
-        
-        protected function eraseMember($formFields) {
-            // Get the singleton instance of the Database class to establish a database connection.
-            $db = Database::getInstance();
-
-            // Prepare the SQL statement.
-            $stmt = $db->connect()->prepare('DELETE FROM members WHERE userID = :userID');
+            $stmt = null;
+            $stmt = $db->connect()->prepare("SELECT COUNT(*) FROM members WHERE userID = :userID");
             $stmt->bindParam(":userID", $formFields['uid']);
-            $stmt->execute(); 
+            $stmt->execute();
 
-            // Goodbye
-            $this->reboundPath('location: ../goodbye.html');
-        } 
+            // Verify if anything was removed
+            $count = $stmt->fetchColumn();
+            if ($count > 0) {
+                $count = null;
+                // message by sessions instead of URL parsing.
+                $_SESSION['error'] = 'Failed to delete Member';
+
+                // Head to the council page.
+                $this->reboundPath('location: ../council.php');
+            }
+
+            // Redirect current operator to a location
+            if ($operator == 'admin') {
+                // Set success message in session
+                $_SESSION['success'] = 'Lid verwijderd';
+
+                // Head to the council page.
+                $this->reboundPath('location: ../council.php');
+
+            } else {
+                // Wipe everything session related, say goodye
+                session_unset(); session_destroy();
+                $this->reboundPath('location: ../goodbye.html');
+            }
+        }
     }

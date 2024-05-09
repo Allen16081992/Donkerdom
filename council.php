@@ -1,5 +1,6 @@
 <?php // Dhr. Allen Pieter
     require_once './config/session_manager.config.php';
+    require_once './models/getdata.model.php';
     verify_UnauthorizedAccess(); // Call the user login definer.
     sessionRegenerateTimer(); // Call the periodic session regenerater.
 ?>
@@ -25,10 +26,12 @@
     <link rel="manifest" href="assets/images/favicon/site.webmanifest">
     <!-- Styling Sheets -->
     <link rel="stylesheet" href="assets/css/default.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.5.2/css/all.css">
     <title>Mijn Raad | Dark Sanctuary</title>
+    <!-- Javascript -->
     <script defer src="assets/js/section-handler.js"></script>
     <script defer src="assets/js/profile-handler.js"></script>
+    <script defer src="assets/js/table-filter.js"></script>
 </head>
 
 <body>
@@ -48,9 +51,11 @@
             <div class="container">
                 <div class="profile-card">
                     <!-- Placeholder for avatar -->
+                    <h3>Mijn Account</h3>
                     <div class="avatar"></div>
-                    <?php require_once './models/getmember.model.php'; ?>
-                    <?php switch($myData['user_level']) {
+
+                    <?php $myData = $dm->fetch_MemberInfo($_SESSION['session_data']['user_id']);
+                        switch($myData['user_level']) {
                         case 1:
                             echo "<p>Guest</p>";
                             break;
@@ -88,7 +93,7 @@
                             <input type="text" name="email" placeholder="Email" value="<?= $myData['email']; ?>" disabled>
                             <label for="pwd">Wachtwoord</label>
                             <input type="password" name="pwd" placeholder="*****" disabled> 
-                            <button id="editButton" name="edit">Wijzigen</button>
+                            <button id="editProfile" name="edit">Wijzigen</button>
                         </form>
                     </div>
                 </div>
@@ -103,38 +108,73 @@
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                 </div>
             </div>
-            
-            <!-- <h2>Account Wijzigen</h2>
-            <div class="form-window">
-                <form action="controllers/submission_handler.control.php" method="post">
-                    <label for="firstname">Voornaam</label>
-                    <input type="text" name="firstname" placeholder="Voornaam" >
-                    <label for="lastname">Achteraam</label>
-                    <input type="text" name="lastname" placeholder="Achternaam" >
-                    <label for="username">Gebruikersnaam</label>
-                    <input type="text" name="username" placeholder="Gebruikersnaam" >
-                    <label for="email">E-mailadres</label>
-                    <input type="email" name="email" placeholder="Email" >
-                    <label for="pwd">Wachtwoord</label>
-                    <input type="password" name="pwd" placeholder="Wachtwoord">     
-
-                    <input type="hidden" name="user_level" >
-                    <input type="hidden" name="uid" >
-
-                    <button type="submit" id="prevBtn" name="editMyself">Opslaan</button>
-                    <a href="account.php">Account Sluiten</a>
-                    <span style="opacity:0;">Nog geen account? maak er hier eentje aan</span>
-                </form>
-            </div> -->
         </section>
 
         <section id="home" class="current">
-            <h2>Raadkamer</h2>
+            <h2>Stem & Raadkamer</h2>
             <p>De officiële Hoge Raad om te stemmen.</p>
+            <div class="container">
+                <div class="profile-card">
+                    <h4>Huidige Kwestie</h4>
+                    <input type="text" name="title" placeholder="Titel" value="Jane Doe Promotie" disabled>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    <form action="member.php" class="form-action" method="post">
+                        <input type="hidden" name="uid" value="<?= $_SESSION['session_data']['user_id']; ?>">
+                        <button class="edit" name="accept">Voor</button>
+                        <button class="trash" name="decline">Tegen</button>
+                        <button class="create" name="neutral">Neutraal</button>
+                    </form> 
+                </div>
+                <div class="profile-card">
+                    <div class="filter-container">
+                        <h4>Onderwerpen</h4>
+                        <?php if ($_SESSION['session_data']['rank'] >= 3) { ?>
+                            <form action="" method="post">
+                                <button class="create" name="createSubject">Nieuw Item</button>
+                            </form>
+                        <?php } ?>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Titel</th>
+                                <th>Beschrijving</th>
+                                <th>Actie</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php if (!empty($subData)) { foreach ($subData as $items): ?>
+                                <tr>
+                                    <td><?= $items['id']; ?></td>
+                                    <td><?= $items['title']; ?></td>
+                                    <td><?= $items['description']; ?></td>
+                                    <td>
+                                        <form class="form-action">
+                                            <input type="hidden" name="item_id" value="<?= $items['id']; ?>">
+                                            <button class="edit"><i class="fas fa-eye fa-xs"></i></button>
+                                            <?php if ($items['active'] == 0) { ?>
+                                                <button class="trash"><i class="fas fa-trash-alt"></i></button>
+                                            <?php } ?>
+                                        </form>
+                                    </td>
+                                </tr>
+                            <?php endforeach; } ?>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="profile-card">
+                    <h4>Raad 3</h4>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                </div>
+                <div class="profile-card">
+                    <h4>Raad 4</h4>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                </div>
+            </div>
         </section>
     
         <section id="manage" class="hidden">
-            <?php require_once './models/getdata.model.php'; ?>
             <h2>Leden Lijst</h2>
             <div class="table-container">
                 <div class="filter-container">
@@ -150,7 +190,7 @@
 
                     <?php if ($_SESSION['session_data']['rank'] == 4) { ?>
                         <form action="member.php" method="post">
-                            <button class="filter-btn" name="createMember">Create</button>
+                            <button class="create" name="createMember">Nieuw Lid</button>
                         </form>
                     <?php } ?>
                 </div>
@@ -193,7 +233,7 @@
                                     }
                                 ?></td>
                                 <td>
-                                    <form action="member.php" method="post">
+                                    <form action="member.php" class="form-action" method="post">
                                         <input type="hidden" name="uid" value="<?= $userData['userID']; ?>">
                                         <button class="edit" name="editMember"><i class="fas fa-edit"></i></button>
                                         <button class="trash" name="undoMember"><i class="fas fa-trash-alt"></i></button>
@@ -232,10 +272,9 @@
                     </tbody>
                 </table>
                 <div class="pagination">
-                    <!-- Placeholder for dynamically generated pagination links -->
+                    <!-- This is dynamically generated by javascript -->
                 </div>
             </div>
-            <script defer src="assets/js/table-filter.js"></script>
         </section>
 
         <section id="error404" class="hidden">

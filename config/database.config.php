@@ -6,7 +6,7 @@
         private static $dbInstance;
         private $dbInvoke;
 
-        // Constructor: Establishes a database connection once during object instantiation,
+        // Constructor: Establish a database connection once during object instantiation,
         // reduce overhead associated with creating a new connection for each operation.
         private function __construct() {
             try { 

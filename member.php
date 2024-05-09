@@ -73,8 +73,10 @@
                     </form>
 
                 <!-- Een Lid Aanpassen -->
-                <?php } elseif (isset($_POST['editMember'])) { ?>
-                    <?php require_once './models/get_listed_one.model.php'; ?>
+                <?php } elseif (isset($_POST['editMember'])) { 
+                        require_once './models/getdata.model.php'; 
+                        $listedOne = $dm->fetch_MemberInfo($_POST['uid']); 
+                    ?>
                     <h2>Een Lid Wijzigen</h2>
                     <form action="controllers/submission_handler.control.php" method="post">
                         <?php server_Messenger(); ?>

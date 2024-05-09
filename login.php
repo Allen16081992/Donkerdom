@@ -24,6 +24,8 @@
     <!-- Styling Sheets -->
     <link rel="stylesheet" href="assets/css/default.css">
     <title>Login | Dark Sanctuary</title>
+    <!-- Javascript -->
+    <script defer src="assets/js/section-handler.js"></script>
 </head>
 
 <body>
@@ -36,11 +38,11 @@
     </header>
 
     <main>
+        <?php server_Messenger(); ?>
         <section id="login">
             <div class="form-window">
                 <h2>Inloggen</h2>
                 <form action="controllers/submission_handler.control.php" method="post">
-                    <?php server_Messenger(); ?>
                     <label for="username">Gebruikersnaam</label>
                     <input type="text" name="username" placeholder="Gebruikersnaam" required>
                     <label for="pwd">Wachtwoord</label>
