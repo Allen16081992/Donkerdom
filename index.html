@@ -31,22 +31,42 @@
         <nav>
             <a href="#" data-section="news">Nieuws</a>
             <a href="login.php" data-section="login">Mijn Raad</a>
-            <a href="#" data-section="error404">Over ons</a>
+            <a href="#" data-section="about">Over ons</a>
             <a href="#" data-section="contact">Contact</a>
         </nav>
+        <div class="loading"></div>
     </header>
 
     <main>
         <section id="home" class="current">
             <h2>Welkom bij spellenvereniging het Donkere Heiligdom</h2>
-            <p>Officieel (ENG: Dark Sanctuary) is een besloten vereniging dat eindelijk de sprong maakt naar het wereldwijde web.<br>
-               Ontstaan uit een klein groepje school vrienden met een gezamenlijk passie voor Yugioh, toernooien en videogames, en uitgegroeid tot een organisatie dat zich richt op het uitoefenen van gezelschapsspellen en videogames. 
-               Waar we vroeger Dungeons & Dragons, Yugioh, Digimon, Videogames, en Warhammer behandelden, is het tegenwoordig alleen Magic the Gathering, Warhammer en Pathfinder.</p>
+            <p>Officieel (ENG: Dark Sanctuary) is een besloten vereniging dat eindelijk de sprong maakt naar het wijde internet.<br>
+               Ontstaan uit een klein groepje school vrienden met een gezamelijke passie voor Yugioh, toernooien en videogames, zijn wij uitgegroeid tot een organisatie voor het beoefenen van gezelschapsspellen en videogames. 
+               Waar we vroeger Dungeons & Dragons, Yugioh, Pokémon en Digimon behandelden, speelt het gross van onze leden tegenwoordig alleen Magic the Gathering, Warhammer en Pathfinder.
+            </p>
+
+            <div class="profile-card" style="height:auto; color:#fff; background:url(https://lerensolliciteren.nl/wp-content/uploads/2023/06/open-sollicitatie.jpg) no-repeat;">
+                <div style="background:rgba(0,0,0,0.5); padding:25px; border-radius:15px;">
+                    <h4>Op zoek naar een nieuwe bijbaan?</h4>
+                    <p>Registreer nu om Jouw CV gratis een update te geven! Na het maken kun je deze gratis downloaden of bewaren.</p>
+                    <p>Wij zullen geen advertenties naar jouw emailadres sturen. Beloofd!</p>
+                    <a href="../CVTemplater/signup.php" target="_blank" class="CtA">Maak gratis een nieuw cv aan</a>
+                </div>
+            </div>
         </section>
     
         <section id="news" class="hidden">
             <h2>Nieuws</h2>
-            <p>hey, I am still empty. You should fill me up.</p>
+            <p><!--hey, I am still empty. You should fill me up.--></p>
+
+            <div class="profile-card" style="height:auto; color:#fff; background:url(https://lerensolliciteren.nl/wp-content/uploads/2023/06/open-sollicitatie.jpg) no-repeat;">
+                <div style="background:rgba(0,0,0,0.5); padding:25px; border-radius:15px;">
+                    <h4>Op zoek naar een nieuwe bijbaan?</h4>
+                    <p>Registreer nu om Jouw CV gratis een update te geven! Na het maken kun je deze gratis downloaden of bewaren.</p>
+                    <p>Wij zullen geen advertenties naar jouw emailadres sturen. Beloofd!</p>
+                    <a href="../CVTemplater/signup.php" target="_blank" class="CtA">Maak gratis een nieuw cv aan</a>
+                </div>
+            </div>
         </section>
 
         <section id="login" class="hidden">
@@ -105,31 +125,28 @@
             </div>
         </section>
 
-        <section id="error404" class="hidden">
-            <h2>Error 404</h2>
-            <p>Zo te zien ben je op een pagina geland welke nog niet bestaat, of onlangs is verwijderd.</p>
+        <section id="about" class="hidden">
+            <div class="profile-card" style="max-width:50%; text-align:left;">
+                <h2>Over Het Donkere Heiligdom</h2>
+                <h3>Het Verhaal</h3>															
+            </div>
         </section>
 
         <section id="contact" class="hidden">
             <div class="form-window">
                 <h2>Contact</h2>
-                <p><strong>Let op!</strong> Om spam tegen te gaan, gebruiken wij geen contact formulier.</p>
+                <p><strong>Let op!</strong> Om spam en bots tegen te gaan, gebruiken wij geen contact formulier.</p>
                 <p>Bestuur: <a style="color:lightslategrey;">info@donkereheiligdom</a> en vergeet niet .nl erbij te zetten.</p>
-                <!-- <form>
-                    <label for="name">Naam</label>
-                    <input type="text" name="name" placeholder="Naam">
-                    <label for="email">Email</label>
-                    <input type="text" name="email" placeholder="Email">
-                    <label for="message">Jouw bericht</label>
-                    <textarea name="message" placeholder="..." rows="2"></textarea>
-                    <button type='submit' name='create'>Verzenden</button>
-                    <span style="opacity:0;">Nog geen account? maak er hier eentje aan</span>
-                </form> -->
             </div>
         </section>
 
+        <section id="error404" class="hidden">
+            <h2>Error 404</h2>
+            <p>Zo te zien ben je op een pagina geland welke nog niet bestaat, of onlangs is verwijderd.</p>
+        </section>
+
         <footer>
-            
+            <p>Donkere Heiligdom © 2011-2024</p>
         </footer>
 
         <!-- Wie JS heeft uitgeschakeld krijgt een site melding te zien -->
