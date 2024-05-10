@@ -48,4 +48,10 @@
             $lc = new DeleteControl($formFields);
             $lc->deleteAccount();
         }
+        elseif (isset($_POST['item_id'])) {
+            require_once '../models/delete.model.php';
+            require_once './delete.control.php';
+            $lc = new DeleteControl($formFields);
+            $lc->deleteSubject();
+        }
     }

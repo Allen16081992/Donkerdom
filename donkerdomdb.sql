@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 12 apr 2024 om 23:09
+-- Gegenereerd op: 10 mei 2024 om 19:23
 -- Serverversie: 10.4.32-MariaDB
 -- PHP-versie: 8.2.12
 
@@ -53,6 +53,53 @@ INSERT INTO `members` (`userID`, `username`, `firstname`, `lastname`, `password`
 -- --------------------------------------------------------
 
 --
+-- Tabelstructuur voor tabel `subjects`
+--
+
+CREATE TABLE `subjects` (
+  `id` int(11) NOT NULL,
+  `title` varchar(50) NOT NULL,
+  `description` text NOT NULL,
+  `active` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `subjects`
+--
+
+INSERT INTO `subjects` (`id`, `title`, `description`, `active`) VALUES
+(1, 'Promotie van Derksen', 'Moet Derksen gepromoveerd worden tot de Hoge Raad?', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Tabelstructuur voor tabel `subject_options`
+--
+
+CREATE TABLE `subject_options` (
+  `id` int(11) NOT NULL,
+  `subjectID` int(11) NOT NULL,
+  `title` varchar(50) NOT NULL,
+  `votes` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Tabelstructuur voor tabel `subject_results`
+--
+
+CREATE TABLE `subject_results` (
+  `id` int(11) NOT NULL,
+  `accept` int(11) DEFAULT NULL,
+  `protest` int(11) DEFAULT NULL,
+  `subjectID` int(11) NOT NULL,
+  `memberID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Tabelstructuur voor tabel `user_levels`
 --
 
@@ -83,6 +130,24 @@ ALTER TABLE `members`
   ADD KEY `user_level` (`user_level`);
 
 --
+-- Indexen voor tabel `subjects`
+--
+ALTER TABLE `subjects`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexen voor tabel `subject_options`
+--
+ALTER TABLE `subject_options`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexen voor tabel `subject_results`
+--
+ALTER TABLE `subject_results`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexen voor tabel `user_levels`
 --
 ALTER TABLE `user_levels`
@@ -97,6 +162,24 @@ ALTER TABLE `user_levels`
 --
 ALTER TABLE `members`
   MODIFY `userID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT voor een tabel `subjects`
+--
+ALTER TABLE `subjects`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT voor een tabel `subject_options`
+--
+ALTER TABLE `subject_options`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT voor een tabel `subject_results`
+--
+ALTER TABLE `subject_results`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT voor een tabel `user_levels`

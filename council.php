@@ -118,7 +118,7 @@
                     <h4>Huidige Kwestie</h4>
                     <input type="text" name="title" placeholder="Titel" value="Jane Doe Promotie" disabled>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                    <form action="member.php" class="form-action" method="post">
+                    <form action="" class="form-action" method="post">
                         <input type="hidden" name="uid" value="<?= $_SESSION['session_data']['user_id']; ?>">
                         <button class="edit" name="accept">Voor</button>
                         <button class="trash" name="decline">Tegen</button>
@@ -129,8 +129,8 @@
                     <div class="filter-container">
                         <h4>Onderwerpen</h4>
                         <?php if ($_SESSION['session_data']['rank'] >= 3) { ?>
-                            <form action="" method="post">
-                                <button class="create" name="createSubject">Nieuw Item</button>
+                            <form action="form_handler.php" method="post">
+                                <button class="create" name="createItem">Nieuw Item</button>
                             </form>
                         <?php } ?>
                     </div>
@@ -140,6 +140,7 @@
                                 <th>ID</th>
                                 <th>Titel</th>
                                 <th>Beschrijving</th>
+                                <th>#</th>
                                 <th>Actie</th>
                             </tr>
                         </thead>
@@ -149,12 +150,13 @@
                                     <td><?= $items['id']; ?></td>
                                     <td><?= $items['title']; ?></td>
                                     <td><?= $items['description']; ?></td>
+                                    <td><?= $items['active']; ?></td>
                                     <td>
-                                        <form class="form-action">
+                                        <form class="form-action" action="form_handler.php" method="post">
                                             <input type="hidden" name="item_id" value="<?= $items['id']; ?>">
-                                            <button class="edit"><i class="fas fa-eye fa-xs"></i></button>
+                                            <button class="edit" name="editItem"><i class="fas fa-eye fa-xs"></i></button>
                                             <?php if ($items['active'] == 0) { ?>
-                                                <button class="trash"><i class="fas fa-trash-alt"></i></button>
+                                                <button class="trash" name="undoItem"><i class="fas fa-trash-alt"></i></button>
                                             <?php } ?>
                                         </form>
                                     </td>
@@ -189,7 +191,7 @@
                     <input type="text" disabled><!-- Maybe a future search bar -->
 
                     <?php if ($_SESSION['session_data']['rank'] == 4) { ?>
-                        <form action="member.php" method="post">
+                        <form action="form_handler.php" method="post">
                             <button class="create" name="createMember">Nieuw Lid</button>
                         </form>
                     <?php } ?>
@@ -233,7 +235,7 @@
                                     }
                                 ?></td>
                                 <td>
-                                    <form action="member.php" class="form-action" method="post">
+                                    <form action="form_handler.php" class="form-action" method="post">
                                         <input type="hidden" name="uid" value="<?= $userData['userID']; ?>">
                                         <button class="edit" name="editMember"><i class="fas fa-edit"></i></button>
                                         <button class="trash" name="undoMember"><i class="fas fa-trash-alt"></i></button>

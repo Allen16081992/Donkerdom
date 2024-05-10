@@ -7,7 +7,7 @@
     class Delete {
         use Rebounds;
 
-        // Update the new member in the Database
+        // Delete the member from the Database
         protected function unsetMember($formFields, $operator) {
             // Get the singleton instance of the Database class to establish a database connection.
             $db = Database::getInstance();
@@ -46,5 +46,23 @@
                 session_unset(); session_destroy();
                 $this->reboundPath('location: ../goodbye.html');
             }
+        }
+
+        protected function unsetItem($formFields) {
+            // Get the singleton instance of the Database class to establish a database connection.
+            $db = Database::getInstance();
+
+            // Prepare the SQL statement.
+            $stmt = $db->connect()->prepare('DELETE FROM subject_options WHERE subjectID = :item_ID');
+            $stmt->bindParam(":item_id", $formFields['item_id']);
+            $stmt->execute();
+
+            $stmt = $db->connect()->prepare('DELETE FROM subjects_results WHERE subjectID = :item_ID');
+            $stmt->bindParam(":item_id", $formFields['item_id']);
+            $stmt->execute();
+
+            $stmt = $db->connect()->prepare('DELETE FROM subjects WHERE id = :item_ID');
+            $stmt->bindParam(":item_id", $formFields['item_id']);
+            $stmt->execute();
         }
     }

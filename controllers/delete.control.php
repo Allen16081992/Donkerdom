@@ -22,4 +22,8 @@
             }
             $this->unsetMember($this->formFields, $this->operator);
         }
+
+        public function deleteSubject() {
+            $this->unsetItem($this->formFields);
+        }
     }
