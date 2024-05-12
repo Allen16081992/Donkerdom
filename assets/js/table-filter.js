@@ -3,6 +3,8 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Grab filter and table rows
     const filterDropdown = document.getElementById('filterDropdown');
+    const searchInput = document.getElementById('searchInput');
+    const searchButton = document.getElementById('searchButton');
     const tableRows = document.querySelectorAll('#userDataTable tbody tr');
 
     // Event listener for filter
@@ -43,6 +45,45 @@ document.addEventListener('DOMContentLoaded', function() {
             default:
                 return "Unknown";
         }
+    }
+
+    // Event listener for pressing Enter key in search input
+    searchInput.addEventListener('keypress', function(event) {
+        if (event.key === 'Enter') {
+            executeSearch();
+        }
+    });
+
+    // Event listener for search button click
+    searchButton.addEventListener('click', function() {
+        executeSearch();
+    });
+
+    function executeSearch() {
+        const searchTerm = searchInput.value.trim().toLowerCase();
+
+        // Show all rows if search term is empty
+        if (searchTerm === '') {
+            tableRows.forEach(row => {
+                row.style.display = '';
+            });
+            return;
+        }
+
+        // Filter table rows based on search term
+        tableRows.forEach(row => {
+            let found = false;
+            row.querySelectorAll('td').forEach(cell => {
+                if (cell.textContent.trim().toLowerCase().includes(searchTerm)) {
+                    found = true;
+                }
+            });
+            if (found) {
+                row.style.display = '';
+            } else {
+                row.style.display = 'none';
+            }
+        });
     }
 
     // Assuming you have fetched data from PHP and stored it in a variable named 'acData'

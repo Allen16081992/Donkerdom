@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 10 mei 2024 om 19:23
+-- Gegenereerd op: 12 mei 2024 om 00:14
 -- Serverversie: 10.4.32-MariaDB
 -- PHP-versie: 8.2.12
 
@@ -60,15 +60,16 @@ CREATE TABLE `subjects` (
   `id` int(11) NOT NULL,
   `title` varchar(50) NOT NULL,
   `description` text NOT NULL,
-  `active` int(11) NOT NULL
+  `active` int(11) DEFAULT NULL,
+  `memberID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `subjects`
 --
 
-INSERT INTO `subjects` (`id`, `title`, `description`, `active`) VALUES
-(1, 'Promotie van Derksen', 'Moet Derksen gepromoveerd worden tot de Hoge Raad?', 0);
+INSERT INTO `subjects` (`id`, `title`, `description`, `active`, `memberID`) VALUES
+(1, 'Promotie van Derksen', 'Moet Derksen gepromoveerd worden tot de Hoge Raad?', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -78,9 +79,9 @@ INSERT INTO `subjects` (`id`, `title`, `description`, `active`) VALUES
 
 CREATE TABLE `subject_options` (
   `id` int(11) NOT NULL,
-  `subjectID` int(11) NOT NULL,
   `title` varchar(50) NOT NULL,
-  `votes` int(11) NOT NULL
+  `votes` int(11) DEFAULT NULL,
+  `subjectID` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -133,19 +134,23 @@ ALTER TABLE `members`
 -- Indexen voor tabel `subjects`
 --
 ALTER TABLE `subjects`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `memberID` (`memberID`);
 
 --
 -- Indexen voor tabel `subject_options`
 --
 ALTER TABLE `subject_options`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `subjectID` (`subjectID`);
 
 --
 -- Indexen voor tabel `subject_results`
 --
 ALTER TABLE `subject_results`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `subjectID` (`subjectID`),
+  ADD KEY `memberID` (`memberID`);
 
 --
 -- Indexen voor tabel `user_levels`
@@ -186,6 +191,35 @@ ALTER TABLE `subject_results`
 --
 ALTER TABLE `user_levels`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- Beperkingen voor geëxporteerde tabellen
+--
+
+--
+-- Beperkingen voor tabel `members`
+--
+ALTER TABLE `members`
+  ADD CONSTRAINT `members_ibfk_1` FOREIGN KEY (`user_level`) REFERENCES `user_levels` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Beperkingen voor tabel `subjects`
+--
+ALTER TABLE `subjects`
+  ADD CONSTRAINT `subjects_ibfk_1` FOREIGN KEY (`memberID`) REFERENCES `members` (`userID`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Beperkingen voor tabel `subject_options`
+--
+ALTER TABLE `subject_options`
+  ADD CONSTRAINT `subject_options_ibfk_1` FOREIGN KEY (`subjectID`) REFERENCES `subjects` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Beperkingen voor tabel `subject_results`
+--
+ALTER TABLE `subject_results`
+  ADD CONSTRAINT `subject_results_ibfk_1` FOREIGN KEY (`subjectID`) REFERENCES `subjects` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `subject_results_ibfk_2` FOREIGN KEY (`memberID`) REFERENCES `members` (`userID`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

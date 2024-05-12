@@ -142,7 +142,7 @@
                         <input type="text" name="title" placeholder="Titel">
                         <label for="description">Beschrijving</label>
                         <input type="text" name="description" placeholder="Beschrijving...">
-                        <label for="options">Opinies (per komma)</label>
+                        <label for="options">(Optioneel: opinies; per komma)</label>
                         <textarea name="options" placeholder="Opties om uit te kiezen..."></textarea>
                         <button type="submit" id="nextBtn" name="createItem">Item Aanmaken</button>
                         <span style="opacity:0;">Nog geen account? maak er hier eentje aan</span>
@@ -159,7 +159,7 @@
                         <input type="text" name="title" placeholder="Titel">
                         <label for="description">Beschrijving</label>
                         <input type="text" name="description" placeholder="Beschrijving...">
-                        <label for="options">Opinies (per komma)</label>
+                        <label for="options">(Optioneel: opinies; per komma)</label>
                         <textarea name="options" placeholder="Opties om uit te kiezen..."></textarea>
 
                         <input type="hidden" name="item_id" value="<?= $_POST['item_id']; ?>">

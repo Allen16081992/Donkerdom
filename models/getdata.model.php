@@ -51,15 +51,16 @@
             // Get the singleton instance of the Database class to establish a database connection.
             $db = Database::getInstance(); 
 
-            $stmt = $db->connect()->prepare();
+            $stmt = $db->connect()->prepare('SELECT * FROM subjects WHERE active = 1 LIMIT 1');
             $stmt->execute();
            
             // Fetch the row from the result.
-            // $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            // return $data;
+            $data = $stmt->fetch(PDO::FETCH_ASSOC);
+            return $data;
         }
     }
 
     $dm = new GetData();
     $acData = $dm->fetch_AllMembers();
     $subData = $dm->fetch_AllSubjects();
+    $item = $dm->fetch_Subject();

@@ -116,14 +116,18 @@
             <div class="container">
                 <div class="profile-card">
                     <h4>Huidige Kwestie</h4>
-                    <input type="text" name="title" placeholder="Titel" value="Jane Doe Promotie" disabled>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                    <form action="" class="form-action" method="post">
+                    <?php if (is_array($item) && isset($item['active']) && $item['active'] == 1) { ?>
+                    <strong><?= $item['title'] ?></strong>
+                    <p><?= $item['description'] ?></p>
+                    <form action="controllers/submission_handler.control.php" class="form-action" method="post">
                         <input type="hidden" name="uid" value="<?= $_SESSION['session_data']['user_id']; ?>">
                         <button class="edit" name="accept">Voor</button>
                         <button class="trash" name="decline">Tegen</button>
                         <button class="create" name="neutral">Neutraal</button>
                     </form> 
+                    <?php } else { ?>
+                        <p>Geen actief onderwerp om te stemmen.</p>
+                    <?php } ?>
                 </div>
                 <div class="profile-card">
                     <div class="filter-container">
@@ -141,6 +145,8 @@
                                 <th>Titel</th>
                                 <th>Beschrijving</th>
                                 <th>#</th>
+                                <th>Voor</th>
+                                <th>Tegen</th>
                                 <th>Actie</th>
                             </tr>
                         </thead>
@@ -150,13 +156,23 @@
                                     <td><?= $items['id']; ?></td>
                                     <td><?= $items['title']; ?></td>
                                     <td><?= $items['description']; ?></td>
-                                    <td><?= $items['active']; ?></td>
+                                    <td>
+                                        <form action="controllers/submission_handler.control.php" method="post">
+                                            <input type="hidden" value="<?= $items['id']; ?>">
+                                            <?= ($items['active'] == 1) ? '<button style="padding:0 5px; background:green;" name="off">On</button>' : '<button style="padding:0 5px; background:grey;" name="on">Off</button>'; ?>
+                                        </form>
+                                    </td>
+                                    <td></td>
+                                    <td></td>
                                     <td>
                                         <form class="form-action" action="form_handler.php" method="post">
                                             <input type="hidden" name="item_id" value="<?= $items['id']; ?>">
-                                            <button class="edit" name="editItem"><i class="fas fa-eye fa-xs"></i></button>
                                             <?php if ($items['active'] == 0) { ?>
+                                                <button class="edit" name="editItem"><i class="fas fa-eye fa-xs"></i></button>
                                                 <button class="trash" name="undoItem"><i class="fas fa-trash-alt"></i></button>
+                                            <?php } else { ?>
+                                                <button style="margin-right:8px; background:grey;" name="editItem" disabled><i class="fas fa-eye fa-xs"></i></button>
+                                                <button style="background:grey;" name="undoItem" disabled><i class="fas fa-trash-alt"></i></button>
                                             <?php } ?>
                                         </form>
                                     </td>
@@ -188,7 +204,10 @@
                         <option value="4">Admin</option>
                     </select>
 
-                    <input type="text" disabled><!-- Maybe a future search bar -->
+                    <div class="form-action">
+                        <input type="text" id="searchInput"><!-- Maybe a future search bar -->
+                        <button id="searchButton"><i class="fas fa-magnifying-glass"></i></button>
+                    </div>
 
                     <?php if ($_SESSION['session_data']['rank'] == 4) { ?>
                         <form action="form_handler.php" method="post">
