@@ -1,4 +1,4 @@
-<?php // Dhr. Allen Pieter
+<?php 
     // Database Configuration
     require_once 'db/config.db.php';
 

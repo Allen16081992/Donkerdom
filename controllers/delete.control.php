@@ -1,4 +1,4 @@
-<?php // Dhr. Allen Pieter
+<?php 
 
     class DeleteControl extends Delete {
         // Properties

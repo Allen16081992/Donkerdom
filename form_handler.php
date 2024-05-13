@@ -1,4 +1,4 @@
-<?php // Dhr. Allen Pieter.
+<?php 
     require_once 'config/session_manager.config.php';
 ?>
 <!DOCTYPE html>
@@ -6,6 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self';">
     <meta name="description" content="Hoofdpagina van Spellenvereniging het Donkere Heiligdom. Sinds Nov. 2011 actief in games waar D&D in 2020 werd toegevoegd. Sinds 11 Januari 2024 naar het web.">
     <meta name="author" content="">
     <!-- Open Graph meta tags for social sharing -->
@@ -68,7 +69,7 @@
                         <!---------------------------->
 
                         <button type="submit" id="nextBtn" name="createMember">Lid Aanmaken</button>
-                        <span style="opacity:0;">Nog geen account? maak er hier eentje aan</span>
+                        <span class="spooky">Nog geen account? maak er hier eentje aan</span>
                     </form>
 
                 <!-- Een Lid Aanpassen -->
@@ -120,7 +121,7 @@
 
                         <input type="hidden" name="uid" value="<?= $_POST['uid'] ?>">
                         <button type="submit" id="nextBtn" name="editMember">Lid Wijzigen</button>
-                        <span style="opacity:0;">Nog geen account? maak er hier eentje aan</span>
+                        <span class="spooky">Nog geen account? maak er hier eentje aan</span>
                     </form>
 
                 <!-- Een Lid Verwijderen -->
@@ -131,7 +132,7 @@
                         
                         <input type="hidden" name="uid" value="<?= $_POST['uid'] ?>">
                         <button type="submit" id="nextBtn" name="undoMember">Lid Verwijderen</button>                   
-                        <span style="opacity:0;">Nog geen account? maak er hier eentje aan</span>
+                        <span class="spooky">Nog geen account? maak er hier eentje aan</span>
                     </form>
 
                 <!-- Een Stem Item Maken -->
@@ -145,7 +146,7 @@
                         <label for="options">(Optioneel: opinies; per komma)</label>
                         <textarea name="options" placeholder="Opties om uit te kiezen..."></textarea>
                         <button type="submit" id="nextBtn" name="createItem">Item Aanmaken</button>
-                        <span style="opacity:0;">Nog geen account? maak er hier eentje aan</span>
+                        <span class="spooky">Nog geen account? maak er hier eentje aan</span>
                     </form>
 
                 <!-- Een Stem Wijzigen -->
@@ -164,7 +165,7 @@
 
                         <input type="hidden" name="item_id" value="<?= $_POST['item_id']; ?>">
                         <button type="submit" id="nextBtn" name="createItem">Item Aanmaken</button>
-                        <span style="opacity:0;">Nog geen account? maak er hier eentje aan</span>
+                        <span class="spooky">Nog geen account? maak er hier eentje aan</span>
                     </form>
 
                 <!-- Een Stem Verwijderen -->
@@ -175,7 +176,7 @@
 
                         <input type="hidden" name="item_id" value="<?= $_POST['item_id']; ?>">
                         <button type="submit" id="nextBtn" name="undoItem">Verwijderen</button>
-                        <span style="opacity:0;">Nog geen account? maak er hier eentje aan</span>
+                        <span class="spooky">Nog geen account? maak er hier eentje aan</span>
                     </form>
                 <?php } ?>
             </div>

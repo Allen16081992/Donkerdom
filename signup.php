@@ -1,18 +1,17 @@
-<?php
-    require_once 'config/session_manager.config.php';
-    //$_SESSION['error'] = "Our servers are down for maintenance.<br> Please contact the administrator."; 
-    //unset($_SESSION['success']); 
+<?php 
+    require_once 'config/session_manager.config.php'; 
 ?>
 <!DOCTYPE html>
 <html lang="nl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self';">
     <meta name="description" content="Hoofdpagina van Spellenvereniging het Donkere Heiligdom. Sinds Nov. 2011 actief in games waar D&D in 2020 werd toegevoegd. Sinds 11 Januari 2024 naar het web.">
     <meta name="author" content="">
     <!-- Open Graph meta tags for social sharing -->
     <meta property="og:title" content="Dark Sanctuary Games Association">
-    <meta property="og:description" content="De primaire website van vereniging TDS voor het beheren van onze ledenadministratie.">
+    <meta property="og:description" content="De primaire website van vereniging TDS.">
     <meta property="og:image" content="hiligen-logo2.webp">
     <meta property="og:locale" content="nl_NL" />
     <meta property="og:type" content="website"/>
@@ -46,7 +45,7 @@
             <div class="form-window">
                 <h2>Een Nieuw Account</h2>
                 <form action="controllers/submission_handler.control.php" method="post">
-                    <div style="text-align:center;margin-top:10px; cursor:default;">
+                    <div class="lightbulbs">
                         <span class="step"></span>
                         <span class="step"></span>
                         <span class="step"></span>
@@ -75,8 +74,8 @@
                     </div>
 
                     <div class="rotator">
-                        <button type="submit" id="prevBtn" onclick="nextPrev(-1)">Terug</button>
-                        <button type="submit" id="nextBtn" onclick="nextPrev(1)">Verder</button>
+                        <button type="submit" id="prevBtn">Terug</button>
+                        <button type="submit" id="nextBtn">Verder</button>
                     </div>
                 </form>
             </div>
@@ -89,7 +88,7 @@
                 <div class="form-window">
                     <h2>Een Nieuw Account</h2>
                     <form action="controllers/submission_handler.control.php" method="post">
-                        <div style="text-align:center;margin-top:10px; cursor:default;"></div>
+                        <div class="lightbulbs"></div>
                         <?php
                             if (isset($_SESSION['error'])) {
                                 echo '<div class="error-msg">'.$_SESSION['error'].'</div>';

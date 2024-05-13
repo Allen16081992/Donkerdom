@@ -1,4 +1,4 @@
-<?php // Dhr. Allen Pieter.
+<?php 
     // Load Database connection
     require_once '../config/database.config.php'; // PDO
     require_once '../config/session_manager.config.php'; // Session

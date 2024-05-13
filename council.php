@@ -1,4 +1,4 @@
-<?php // Dhr. Allen Pieter
+<?php 
     require_once './config/session_manager.config.php';
     require_once './models/getdata.model.php';
     verify_UnauthorizedAccess(); // Call the user login definer.
@@ -9,11 +9,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' https://use.fontawesome.com; font-src 'self' https://use.fontawesome.com; style-src-attr 'self' https://use.fontawesome.com;">
     <meta name="description" content="Raadkamer van Spellenvereniging het Donkere Heiligdom. Sinds Nov. 2011 actief in games waar D&D in 2020 werd toegevoegd. Sinds 11 Januari 2024 naar het web.">
     <meta name="author" content="">
     <!-- Open Graph meta tags for social sharing -->
     <meta property="og:title" content="Dark Sanctuary Games Association">
-    <meta property="og:description" content="De primaire website van vereniging TDS voor het beheren van onze ledenadministratie.">
+    <meta property="og:description" content="De primaire website van vereniging TDS.">
     <meta property="og:image" content="hiligen-logo2.webp">
     <meta property="og:locale" content="nl_NL" />
     <meta property="og:type" content="website"/>
@@ -38,7 +39,7 @@
     <header>
         <div class="logo"><a href="#" id="logo"><img src="assets/images/hiligen-logo2.webp" alt="Games Association Logo"></a></div>
         <nav>
-            <a href="#" data-section="profile" style="font-style:italic;"><?= $_SESSION['session_data']['username']; ?></a>
+            <a href="#" class="user-font" data-section="profile"><?= $_SESSION['session_data']['username']; ?></a>
             <a href="#" data-section="home">Raad</a>
             <a href="#" data-section="manage">Management</a>
             <a href="./logout.php" id="logout">Uitloggen</a>
@@ -72,9 +73,8 @@
                     <strong><?= $myData['firstname'].' '.$myData['lastname']; ?></strong>
                     <p>Full Stack Developer</p>
                     <form action="logout.php" method="post">
-                        <button id="closeAccount" style="background:grey;" name="closeAccount">Account Sluiten</button>
+                        <button id="closeAccount" name="closeAccount">Account Sluiten</button>
                     </form>
-                    <span style="opacity:0;">Nog geen account? maak er hier eentje aan aan aan aan aan aann</span>
                 </div>
 
                 <div class="profile-card">
@@ -159,7 +159,7 @@
                                     <td>
                                         <form action="controllers/submission_handler.control.php" method="post">
                                             <input type="hidden" value="<?= $items['id']; ?>">
-                                            <?= ($items['active'] == 1) ? '<button style="padding:0 5px; background:green;" name="off">On</button>' : '<button style="padding:0 5px; background:grey;" name="on">Off</button>'; ?>
+                                            <?= ($items['active'] == 1) ? '<button name="offBtn">On</button>' : '<button name="onBtn">Off</button>'; ?>
                                         </form>
                                     </td>
                                     <td></td>
@@ -171,8 +171,8 @@
                                                 <button class="edit" name="editItem"><i class="fas fa-eye fa-xs"></i></button>
                                                 <button class="trash" name="undoItem"><i class="fas fa-trash-alt"></i></button>
                                             <?php } else { ?>
-                                                <button style="margin-right:8px; background:grey;" name="editItem" disabled><i class="fas fa-eye fa-xs"></i></button>
-                                                <button style="background:grey;" name="undoItem" disabled><i class="fas fa-trash-alt"></i></button>
+                                                <button class="unset" disabled><i class="fas fa-eye fa-xs"></i></button>
+                                                <button class="unset" disabled><i class="fas fa-trash-alt"></i></button>
                                             <?php } ?>
                                         </form>
                                     </td>

@@ -1,6 +1,20 @@
-"use strict"; // Dhr. Allen Pieter - In collaboration with ChatGPT
+"use strict"; 
 let currentTab = 0; // Current tab is set to be the first tab (0)
 showTab(currentTab); // Display the current tab
+
+document.addEventListener('DOMContentLoaded', (event) => {
+  // Get a reference to your button element
+  const prevBtn = document.getElementById("prevBtn");
+  const nextBtn = document.getElementById("nextBtn");
+
+  // Add an event listener to the button
+  nextBtn.addEventListener('click', function() {
+      nextPrev(1);
+  });
+  prevBtn.addEventListener('click', function() {
+      nextPrev(-1);
+  });
+});
 
 function showTab(n) {
   // Display the specified tab

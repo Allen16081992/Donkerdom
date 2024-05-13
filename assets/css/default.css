@@ -79,6 +79,15 @@ button { cursor: pointer; }
         transform-origin:right; 
     }
 }
+.user-font { font-style:italic; }
+button[name="closeAccount"] { background:grey; }
+button[name="onBtn"] { padding:0 5px; background:grey; }
+button[name="offBtn"] { padding:0 5px; background:lightseagreen; }
+.unset { margin-right:8px; background:grey; }
+.spooky { opacity:0; }
+#mail { color:lightslategrey; }
+#aboutUs { max-width:50%; text-align:left; }
+.lightbulbs { text-align:center; margin-top:10px; cursor:default; }
 
 footer, section, .form-window form {
     display: flex;

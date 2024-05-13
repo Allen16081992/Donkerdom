@@ -1,4 +1,4 @@
-<?php // Dhr. Allen Pieter 
+<?php 
     if (!isset($_SESSION)) {
         session_start();
     }

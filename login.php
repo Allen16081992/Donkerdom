@@ -1,4 +1,4 @@
-<?php // Dhr. Allen Pieter.
+<?php 
     require_once 'config/session_manager.config.php';
 ?>
 <!DOCTYPE html>
@@ -6,11 +6,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self';">
     <meta name="description" content="Hoofdpagina van Spellenvereniging het Donkere Heiligdom. Sinds Nov. 2011 actief in games waar D&D in 2020 werd toegevoegd. Sinds 11 Januari 2024 naar het web.">
     <meta name="author" content="">
     <!-- Open Graph meta tags for social sharing -->
     <meta property="og:title" content="Dark Sanctuary Games Association">
-    <meta property="og:description" content="De primaire website van vereniging TDS voor het beheren van onze ledenadministratie.">
+    <meta property="og:description" content="De primaire website van vereniging TDS.">
     <meta property="og:image" content="hiligen-logo2.webp">
     <meta property="og:locale" content="nl_NL" />
     <meta property="og:type" content="website"/>

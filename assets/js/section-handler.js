@@ -1,4 +1,4 @@
-"use strict"; // Dhr. Allen Pieter
+"use strict";
 // Single Page Application
 document.addEventListener('DOMContentLoaded', function () {
     // Select the navigation bar element

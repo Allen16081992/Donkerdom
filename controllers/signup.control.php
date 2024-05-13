@@ -1,4 +1,4 @@
-<?php // Dhr. Allen Pieter
+<?php 
 
     class SignupControl extends Signup {
         use Rebounds;

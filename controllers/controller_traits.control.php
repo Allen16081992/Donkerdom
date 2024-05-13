@@ -1,4 +1,4 @@
-<?php // Dhr. Allen Pieter
+<?php 
     trait Rebounds {
         private function reboundPath($route) {
             header($route);

@@ -1,4 +1,4 @@
-<?php // Dhr. Allen Pieter
+<?php 
 
     class UpdateControl extends Update {
         use Rebounds;
