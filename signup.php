@@ -1,4 +1,5 @@
 <?php 
+    header("Strict-Transport-Security: max-age=31536000;");
     require_once 'config/session_manager.config.php'; 
 ?>
 <!DOCTYPE html>
@@ -6,7 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self';">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; upgrade-insecure-requests;">
     <meta name="description" content="Hoofdpagina van Spellenvereniging het Donkere Heiligdom. Sinds Nov. 2011 actief in games waar D&D in 2020 werd toegevoegd. Sinds 11 Januari 2024 naar het web.">
     <meta name="author" content="">
     <!-- Open Graph meta tags for social sharing -->

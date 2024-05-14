@@ -344,6 +344,10 @@ table tr:hover td {
     display: inline-block;
     margin-right: 10px;
 }
+.policy-card {
+    justify-content: left;
+    align-items: left;
+}
 
 @media only screen and (max-width: 600px) {
     .logo img {max-width:100px;}
@@ -354,9 +358,6 @@ table tr:hover td {
     }
 
     /* Table */
-    /* #filterDropdown  {
-        max-width: 20%;
-    } */
     th, td {
         padding: 4px;
     }
@@ -403,4 +404,5 @@ table tr:hover td {
     td:nth-child(5), td:nth-child(6), th:nth-child(5), th:nth-child(6) {
         display: none;
     }
+    #aboutUs { max-width:90%; text-align:left; }
 }
