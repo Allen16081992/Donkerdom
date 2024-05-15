@@ -1,5 +1,4 @@
 <?php 
-    header("Strict-Transport-Security: max-age=31536000;");
     require_once './config/session_manager.config.php';
     require_once './models/getdata.model.php';
     verify_UnauthorizedAccess(); // Call the user login definer.
@@ -17,10 +16,10 @@
     <meta property="og:title" content="Dark Sanctuary Games Association">
     <meta property="og:description" content="De primaire website van vereniging TDS.">
     <meta property="og:image" content="hiligen-logo2.webp">
-    <meta property="og:locale" content="nl_NL" />
-    <meta property="og:type" content="website"/>
+    <meta property="og:locale" content="nl_NL">
+    <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.donkereheiligdom.nl">
-    <link rel="canonical" href="https://www.donkereheiligdom.nl">
+    <link rel="canonical" href="https://www.donkereheiligdom.nl/council">
     <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon/favicon-32x32.png">
@@ -80,20 +79,20 @@
 
                 <div class="profile-card">
                     <div class="details">
-                        <form id="myDetails" action="controllers/submission_handler.control.php" method="post"> 
-                        <label for="username">Gebruikersnaam</label>
+                        <form id="myDetails" action="controllers/submission_handler.control.php" method="post">   
                             <input type="hidden" name="uid" value="<?= $_SESSION['session_data']['user_id']; ?>">
                             <input type="hidden" name="user_level" value="<?= $_SESSION['session_data']['rank']; ?>">
 
-                            <input type="text" name="username" placeholder="Gebruikersnaam" value="<?= $myData['username']; ?>" disabled>                     
+                            <label for="username">Gebruikersnaam</label>
+                            <input type="text" id="username" name="username" placeholder="Gebruikersnaam" value="<?= $myData['username']; ?>" disabled>                     
                             <label for="firstname">Naam</label>
-                            <input type="text" name="firstname" placeholder="Voornaam" value="<?= $myData['firstname']; ?>" disabled>
+                            <input type="text" id="firstname" name="firstname" placeholder="Voornaam" value="<?= $myData['firstname']; ?>" disabled>
                             <label for="lastname">Achternaam</label>
-                            <input type="text" name="lastname" placeholder="Achternaam" value="<?= $myData['lastname']; ?>" disabled>
+                            <input type="text" id="lastname" name="lastname" placeholder="Achternaam" value="<?= $myData['lastname']; ?>" disabled>
                             <label for="email">Email</label>
-                            <input type="text" name="email" placeholder="Email" value="<?= $myData['email']; ?>" disabled>
+                            <input type="text" id="email" name="email" placeholder="Email" value="<?= $myData['email']; ?>" disabled>
                             <label for="pwd">Wachtwoord</label>
-                            <input type="password" name="pwd" placeholder="*****" disabled> 
+                            <input type="password" id="pwd" name="pwd" placeholder="*****" disabled> 
                             <button id="editProfile" name="edit">Wijzigen</button>
                         </form>
                     </div>

@@ -1,5 +1,4 @@
 <?php 
-    header("Strict-Transport-Security: max-age=31536000;");
     require_once 'config/session_manager.config.php';
 ?>
 <!DOCTYPE html>
@@ -14,10 +13,10 @@
     <meta property="og:title" content="Dark Sanctuary Games Association">
     <meta property="og:description" content="De primaire website van vereniging TDS voor het beheren van onze ledenadministratie.">
     <meta property="og:image" content="hiligen-logo2.webp">
-    <meta property="og:locale" content="nl_NL" />
-    <meta property="og:type" content="website"/>
+    <meta property="og:locale" content="nl_NL">
+    <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.donkereheiligdom.nl">
-    <link rel="canonical" href="https://www.donkereheiligdom.nl">
+    <link rel="canonical" href="https://www.donkereheiligdom.nl/forms">
     <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon/favicon-32x32.png">
@@ -25,7 +24,7 @@
     <link rel="manifest" href="assets/images/favicon/site.webmanifest">
     <!-- Styling Sheets -->
     <link rel="stylesheet" href="assets/css/default.css">
-    <title>Nieuwe Lid | Dark Sanctuary</title>
+    <title>Wijzigingen | Dark Sanctuary</title>
 </head>
 
 <body>
@@ -46,16 +45,16 @@
                 <?php if (isset($_POST['createMember'])) { ?>
                     <h2>Een Nieuw Lid</h2>
                     <form action="controllers/submission_handler.control.php" method="post">
-                        <label for="firstname">Voornaam</label>
-                        <input type="text" name="firstname" placeholder="Voornaam" required>
-                        <label for="lastname">Achteraam</label>
-                        <input type="text" name="lastname" placeholder="Achternaam" required>
-                        <label for="username">Gebruikersnaam</label>
-                        <input type="text" name="username" placeholder="Gebruikersnaam" required>
-                        <label for="email">E-mailadres</label>
-                        <input type="email" name="email" placeholder="Email" required>
-                        <label for="pwd">Wachtwoord</label>
-                        <input type="password" name="pwd" placeholder="Wachtwoord" required>
+                        <label for="new-firstname">Voornaam</label>
+                        <input type="text" id="new-firstname" name="firstname" placeholder="Voornaam" required>
+                        <label for="new-lastname">Achteraam</label>
+                        <input type="text" id="new-lastname" name="lastname" placeholder="Achternaam" required>
+                        <label for="new-username">Gebruikersnaam</label>
+                        <input type="text" id="new-username" name="username" placeholder="Gebruikersnaam" required>
+                        <label for="new-email">E-mailadres</label>
+                        <input type="email" id="new-email" name="email" placeholder="Email" required>
+                        <label for="new-pwd">Wachtwoord</label>
+                        <input type="password" id="new-pwd" name="pwd" placeholder="Wachtwoord" required>
 
                         <!-- Only for Admin/Council -->
                         <?php if ($_SESSION['session_data']['rank'] > 2) { ?>
@@ -67,7 +66,6 @@
                             <option value="4">Admin</option>
                         </select>
                         <?php } ?>
-                        <!---------------------------->
 
                         <button type="submit" id="nextBtn" name="createMember">Lid Aanmaken</button>
                         <span class="spooky">Nog geen account? maak er hier eentje aan</span>
@@ -80,16 +78,16 @@
                     ?>
                     <h2>Een Lid Wijzigen</h2>
                     <form action="controllers/submission_handler.control.php" method="post">
-                        <label for="firstname">Voornaam</label>
-                        <input type="text" name="firstname" placeholder="Voornaam" value="<?= $listedOne['firstname']; ?>">
-                        <label for="lastname">Achteraam</label>
-                        <input type="text" name="lastname" placeholder="Achternaam" value="<?= $listedOne['lastname']; ?>">
-                        <label for="username">Gebruikersnaam</label>
-                        <input type="text" name="username" placeholder="Gebruikersnaam" value="<?= $listedOne['username']; ?>">
-                        <label for="email">E-mailadres</label>
-                        <input type="email" name="email" placeholder="Email" value="<?= $listedOne['email']; ?>">
-                        <label for="pwd">Wachtwoord</label>
-                        <input type="password" name="pwd" placeholder="Vereist*" required>
+                        <label for="edit-firstname">Voornaam</label>
+                        <input type="text" id="edit-firstname" name="firstname" placeholder="Voornaam" value="<?= $listedOne['firstname']; ?>">
+                        <label for="edit-lastname">Achteraam</label>
+                        <input type="text" id="edit-lastname" name="lastname" placeholder="Achternaam" value="<?= $listedOne['lastname']; ?>">
+                        <label for="edit-username">Gebruikersnaam</label>
+                        <input type="text" id="edit-username" name="username" placeholder="Gebruikersnaam" value="<?= $listedOne['username']; ?>">
+                        <label for="edit-email">E-mailadres</label>
+                        <input type="email" id="edit-email" name="email" placeholder="Email" value="<?= $listedOne['email']; ?>">
+                        <label for="edit-pwd">Wachtwoord</label>
+                        <input type="password" id="edit-pwd" name="pwd" placeholder="Vereist*" required>
 
                         <!-- Only for Admin/Council -->
                         <?php if ($_SESSION['session_data']['rank'] > 2) { ?>
@@ -118,7 +116,6 @@
                             <option value="4">Admin</option>
                         </select>
                         <?php } ?>
-                        <!---------------------------->
 
                         <input type="hidden" name="uid" value="<?= $_POST['uid'] ?>">
                         <button type="submit" id="nextBtn" name="editMember">Lid Wijzigen</button>
@@ -140,12 +137,12 @@
                 <?php } elseif (isset($_POST['createItem'])) { ?>
                     <h2>Nieuw Onderwerp</h2>
                     <form action="controllers/submission_handler.control.php" method="post">
-                        <label for="title">Titel</label>
-                        <input type="text" name="title" placeholder="Titel">
-                        <label for="description">Beschrijving</label>
-                        <input type="text" name="description" placeholder="Beschrijving...">
-                        <label for="options">(Optioneel: opinies; per komma)</label>
-                        <textarea name="options" placeholder="Opties om uit te kiezen..."></textarea>
+                        <label for="new-title">Titel</label>
+                        <input type="text" id="new-title" name="title" placeholder="Titel">
+                        <label for="new-desc">Beschrijving</label>
+                        <input type="text" id="new-desc" name="description" placeholder="Beschrijving...">
+                        <label for="new-options">(Optioneel: opinies; per komma)</label>
+                        <textarea name="options" id="new-options" placeholder="Opties om uit te kiezen..."></textarea>
                         <button type="submit" id="nextBtn" name="createItem">Item Aanmaken</button>
                         <span class="spooky">Nog geen account? maak er hier eentje aan</span>
                     </form>
@@ -157,12 +154,12 @@
                     ?>
                     <h2>Onderwerp Wijzigen</h2>
                     <form action="controllers/submission_handler.control.php" method="post">
-                        <label for="title">Titel</label>
-                        <input type="text" name="title" placeholder="Titel">
-                        <label for="description">Beschrijving</label>
-                        <input type="text" name="description" placeholder="Beschrijving...">
-                        <label for="options">(Optioneel: opinies; per komma)</label>
-                        <textarea name="options" placeholder="Opties om uit te kiezen..."></textarea>
+                        <label for="edit-title">Titel</label>
+                        <input type="text" id="edit-title" name="title" placeholder="Titel">
+                        <label for="edit-desc">Beschrijving</label>
+                        <input type="text" id="edit-desc" name="description" placeholder="Beschrijving...">
+                        <label for="edit-options">(Optioneel: opinies; per komma)</label>
+                        <textarea id="edit-options" name="options" placeholder="Opties om uit te kiezen..."></textarea>
 
                         <input type="hidden" name="item_id" value="<?= $_POST['item_id']; ?>">
                         <button type="submit" id="nextBtn" name="createItem">Item Aanmaken</button>

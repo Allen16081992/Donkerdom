@@ -1,5 +1,4 @@
 <?php 
-    header("Strict-Transport-Security: max-age=31536000;");
     require_once 'config/session_manager.config.php';
 ?>
 <!DOCTYPE html>
@@ -14,10 +13,10 @@
     <meta property="og:title" content="Dark Sanctuary Games Association">
     <meta property="og:description" content="De primaire website van vereniging TDS.">
     <meta property="og:image" content="hiligen-logo2.webp">
-    <meta property="og:locale" content="nl_NL" />
-    <meta property="og:type" content="website"/>
+    <meta property="og:locale" content="nl_NL">
+    <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.donkereheiligdom.nl">
-    <link rel="canonical" href="https://www.donkereheiligdom.nl">
+    <link rel="canonical" href="https://www.donkereheiligdom.nl/login">
     <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon/favicon-32x32.png">
@@ -25,7 +24,7 @@
     <link rel="manifest" href="assets/images/favicon/site.webmanifest">
     <!-- Styling Sheets -->
     <link rel="stylesheet" href="assets/css/default.css">
-    <title>Login | Dark Sanctuary</title>
+    <title>Login | Het Donkere Heiligdom</title>
     <!-- Javascript -->
     <script defer src="assets/js/section-handler.js"></script>
 </head>
@@ -46,9 +45,9 @@
                 <h2>Inloggen</h2>
                 <form action="controllers/submission_handler.control.php" method="post">
                     <label for="username">Gebruikersnaam</label>
-                    <input type="text" name="username" placeholder="Gebruikersnaam" required>
+                    <input type="text" id="username" name="username" placeholder="Gebruikersnaam" required>
                     <label for="pwd">Wachtwoord</label>
-                    <input type="password" name="pwd" placeholder="Wachtwoord" required>
+                    <input type="password" id="pwd" name="pwd" placeholder="Wachtwoord" required>
 
                     <button type="submit" name="login">Inloggen</button>
                     <span>Nog geen account? <a href="signup.php">maak er hier eentje aan</a></span>

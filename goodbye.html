@@ -13,7 +13,7 @@
     <meta property="og:locale" content="nl_NL" />
     <meta property="og:type" content="website"/>
     <meta property="og:url" content="https://www.donkereheiligdom.nl">
-    <link rel="canonical" href="https://www.donkereheiligdom.nl">
+    <link rel="canonical" href="https://www.donkereheiligdom.nl/goodbye">
     <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon/favicon-32x32.png">
@@ -22,13 +22,8 @@
     <!-- Styling Sheets -->
     <link rel="stylesheet" href="assets/css/default.css">
     <title>Tot Ziens! | Dark Sanctuary</title>
-    <style>
-        #countdown {
-            font-size: 24px;
-            font-weight: bold;
-            color: red;
-        }
-    </style>
+    <!-- Javascript -->
+    <script defer src="assets/js/goodbye-handler.js"></script>
 </head>
 
 <body>
@@ -44,31 +39,6 @@
             <p>Onze vleermuis brengt je weg in <span id="countdownText">8</span> seconden...</p>
         </section>
     </main>
-
-    <script>
-        // Function to redirect to index page after a countdown
-        function redirectToIndexPage() {
-            let countdown = 8; // Countdown duration in seconds
-
-            // Update countdown timer every second
-            let timerInterval = setInterval(function() {
-                countdown--;
-                document.getElementById('countdown').textContent = countdown;
-                document.getElementById('countdownText').textContent = countdown;
-
-                // Redirect to index page when countdown reaches 0
-                if (countdown <= 0) {
-                    clearInterval(timerInterval); // Stop the timer interval
-                    window.location.href = 'index.html'; // Redirect to index page
-                }
-            }, 1000); // Update every 1000 milliseconds (1 second)
-        }
-
-        // Call redirectToIndexPage function after page load
-        window.onload = function() {
-            redirectToIndexPage();
-        };
-    </script>
 
     <!-- Wie JS heeft uitgeschakeld krijgt een knopje te zien -->
     <noscript>

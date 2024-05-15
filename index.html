@@ -10,8 +10,8 @@
     <meta property="og:title" content="Dark Sanctuary Games Association">
     <meta property="og:description" content="De primaire website van vereniging TDS.">
     <meta property="og:image" content="hiligen-logo2.webp">
-    <meta property="og:locale" content="nl_NL" />
-    <meta property="og:type" content="website"/>
+    <meta property="og:locale" content="nl_NL">
+    <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.donkereheiligdom.nl">
     <link rel="canonical" href="https://www.donkereheiligdom.nl">
     <!-- Favicon -->
@@ -21,7 +21,8 @@
     <link rel="manifest" href="assets/images/favicon/site.webmanifest">
     <!-- Styling Sheets -->
     <link rel="stylesheet" href="assets/css/default.css">
-    <title>Home | Dark Sanctuary</title>
+    <title>Magic & Tabletop | Het Donkere Heiligdom</title>
+    <!-- Javascript -->
     <script defer src="assets/js/section-handler.js"></script>
     <script defer src="assets/js/form.multi-step.js"></script>
 </head>
@@ -74,10 +75,10 @@
             <div class="form-window">
                 <h2>Inloggen</h2>
                 <form action="controllers/submission_handler.control.php" method="post">
-                    <label for="username">Gebruikersnaam</label>
-                    <input type="text" name="username" placeholder="Gebruikersnaam" required>
-                    <label for="pwd">Wachtwoord</label>
-                    <input type="password" name="pwd" placeholder="Wachtwoord" required>
+                    <label for="login-username">Gebruikersnaam</label>
+                    <input type="text" id="login-username" name="username" placeholder="Gebruikersnaam" required>
+                    <label for="login-pwd">Wachtwoord</label>
+                    <input type="password" id="login-pwd" name="pwd" placeholder="Wachtwoord" required>
 
                     <button type="submit" name="login">Inloggen</button>
                     <span>Nog geen account? <a href="signup.php" data-section="sign_up">maak er hier eentje aan</a></span>
@@ -96,26 +97,26 @@
                     </div>
 
                     <div class="tab">
-                        <label for="firstname">Voornaam</label>
-                        <input type="text" name="firstname" placeholder="Voornaam" required>
-                        <label for="lastname">Achteraam</label>
-                        <input type="text" name="lastname" placeholder="Achternaam">
+                        <label for="signup-firstname">Voornaam</label>
+                        <input type="text" id="signup-firstname" name="firstname" placeholder="Voornaam" required>
+                        <label for="signup-lastname">Achteraam</label>
+                        <input type="text" id="signup-lastname" name="lastname" placeholder="Achternaam">
                     </div>
 
                     <div class="tab">
-                        <label for="username">Gebruikersnaam</label>
-                        <input type="text" name="username" placeholder="Gebruikersnaam" required>
-                        <label for="email">E-mailadres</label> 
-                        <input type="text" name="email" placeholder="E-mailadres">
+                        <label for="signup-username">Gebruikersnaam</label>
+                        <input type="text" id="signup-username" name="username" placeholder="Gebruikersnaam" required>
+                        <label for="signup-email">E-mailadres</label> 
+                        <input type="text" id="signup-email" name="email" placeholder="E-mailadres">
                     </div>
 
                     <div class="tab">
-                        <label for="pwd">Wachtwoord</label>
-                        <input type="password" name="pwd" placeholder="Wachtwoord" required>
-                        <label for="pwd">Herhaal Wachtwoord</label>
-                        <input type="password" name="pwdR" placeholder="Herhaal Wachtwoord" required>
+                        <label for="signup-pwd">Wachtwoord</label>
+                        <input type="password" id="signup-pwd" name="pwd" placeholder="Wachtwoord" required>
+                        <label for="signup-pwdR">Herhaal Wachtwoord</label>
+                        <input type="password" id="signup-pwdR" name="pwdR" placeholder="Herhaal Wachtwoord" required>
                         <label for="terms"></label>
-                        <span><input type="checkbox" title="terms" name="terms" required> Lees en accepteer de <a href="terms-and-conditions.php" target="_blank">algemene voorwaarden</a>.</span>
+                        <span><input type="checkbox" id="terms" name="terms" required> Lees en accepteer de <a href="terms-and-conditions.php" target="_blank">algemene voorwaarden</a>.</span>
                     </div>
 
                     <div class="rotator">

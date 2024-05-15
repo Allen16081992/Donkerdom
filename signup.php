@@ -1,5 +1,4 @@
 <?php 
-    header("Strict-Transport-Security: max-age=31536000;");
     require_once 'config/session_manager.config.php'; 
 ?>
 <!DOCTYPE html>
@@ -14,10 +13,10 @@
     <meta property="og:title" content="Dark Sanctuary Games Association">
     <meta property="og:description" content="De primaire website van vereniging TDS.">
     <meta property="og:image" content="hiligen-logo2.webp">
-    <meta property="og:locale" content="nl_NL" />
-    <meta property="og:type" content="website"/>
+    <meta property="og:locale" content="nl_NL">
+    <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.donkereheiligdom.nl">
-    <link rel="canonical" href="https://www.donkereheiligdom.nl">
+    <link rel="canonical" href="https://www.donkereheiligdom.nl/signup">
     <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon/favicon-32x32.png">
@@ -25,7 +24,7 @@
     <link rel="manifest" href="assets/images/favicon/site.webmanifest">
     <!-- Styling Sheets -->
     <link rel="stylesheet" href="assets/css/default.css">
-    <title>Signup | Dark Sanctuary</title>
+    <title>Een Nieuw Account | Het Donkere Heiligdom</title>
     <!-- Javascript -->
     <script defer src="assets/js/form.multi-step.js"></script>
     <script defer src="assets/js/section-handler.js"></script>
@@ -42,7 +41,7 @@
 
     <main>
         <?php server_Messenger(); ?>
-        <section id="signup" class="current">
+        <section class="current">
             <div class="form-window">
                 <h2>Een Nieuw Account</h2>
                 <form action="controllers/submission_handler.control.php" method="post">
@@ -53,25 +52,25 @@
                     </div>
                     <div class="tab">
                         <label for="firstname">Voornaam</label>
-                        <input type="text" name="firstname" placeholder="Voornaam" required>
+                        <input type="text" id="firstname" name="firstname" placeholder="Voornaam" required>
                         <label for="lastname">Achteraam</label>
-                        <input type="text" name="lastname" placeholder="Achternaam" required>
+                        <input type="text" id="lastname" name="lastname" placeholder="Achternaam" required>
                     </div>
 
                     <div class="tab">
                         <label for="username">Gebruikersnaam</label>
-                        <input type="text" name="username" placeholder="Gebruikersnaam" required>
+                        <input type="text" id="username" name="username" placeholder="Gebruikersnaam" required>
                         <label for="email">E-mailadres</label> 
-                        <input type="text" name="email" placeholder="E-mailadres" required>
+                        <input type="text" id="email" name="email" placeholder="E-mailadres" required>
                     </div>
 
                     <div class="tab">
                         <label for="pwd">Wachtwoord</label>
-                        <input type="password" name="pwd" placeholder="Wachtwoord" required>
-                        <label for="pwd">Herhaal Wachtwoord</label>
-                        <input type="password" name="pwdR" placeholder="Herhaal Wachtwoord" required>
+                        <input type="password" id="pwd" name="pwd" placeholder="Wachtwoord" required>
+                        <label for="pwdR">Herhaal Wachtwoord</label>
+                        <input type="password" id="pwdR" name="pwdR" placeholder="Herhaal Wachtwoord" required>
                         <label for="terms"></label>
-                        <span><input type="checkbox" title="terms" name="terms" required> Lees en accepteer de <a href="terms-and-conditions.php" target="_blank">algemene voorwaarden</a>.</span>
+                        <span><input type="checkbox" id="terms" name="terms" required> Lees en accepteer de <a href="terms-and-conditions.php" target="_blank">algemene voorwaarden</a>.</span>
                     </div>
 
                     <div class="rotator">
@@ -85,7 +84,7 @@
         <!-- Wie JS heeft uitgeschakeld krijgt een site melding te zien -->
         <noscript>
             <p class="error-msg">Het lijkt erop dat JavaScript is uitgeschakeld in uw browser. <br>De knoppen onder onze vleermuis werken hierdoor niet meer.</p>
-            <section id="signup" class="current">
+            <section class="current">
                 <div class="form-window">
                     <h2>Een Nieuw Account</h2>
                     <form action="controllers/submission_handler.control.php" method="post">
@@ -100,22 +99,22 @@
                                 $_SESSION['success'] = null; // Clear the server message on page reload
                             }
                         ?>
-                        <label for="firstname">Voornaam</label>
-                        <input type="text" name="firstname" placeholder="Voornaam" required>
-                        <label for="lastname">Achteraam</label>
-                        <input type="text" name="lastname" placeholder="Achternaam" required>
+                        <label for="signup-firstname">Voornaam</label>
+                        <input type="text" id="signup-firstname" name="firstname" placeholder="Voornaam" required>
+                        <label for="signup-lastname">Achteraam</label>
+                        <input type="text" id="signup-lastname" name="lastname" placeholder="Achternaam" required>
 
-                        <label for="username">Gebruikersnaam</label>
-                        <input type="text" name="username" placeholder="Gebruikersnaam" required>
-                        <label for="email">E-mailadres</label> 
-                        <input type="text" name="email" placeholder="E-mailadres" required>
+                        <label for="signup-username">Gebruikersnaam</label>
+                        <input type="text" id="signup-username" name="username" placeholder="Gebruikersnaam" required>
+                        <label for="signup-email">E-mailadres</label> 
+                        <input type="text" id="signup-email" name="email" placeholder="E-mailadres" required>
 
-                        <label for="pwd">Wachtwoord</label>
-                        <input type="password" name="pwd" placeholder="Wachtwoord" required>
-                        <label for="pwd">Herhaal Wachtwoord</label>
-                        <input type="password" name="pwdR" placeholder="Herhaal Wachtwoord" required>
-                        <label for="terms"></label>
-                        <span><input type="checkbox" title="terms" name="terms" required> Lees en accepteer de <a href="terms-and-conditions.php" target="_blank">algemene voorwaarden</a>.</span>
+                        <label for="signup-pwd">Wachtwoord</label>
+                        <input type="password" id="signup-pwd" name="pwd" placeholder="Wachtwoord" required>
+                        <label for="signup-pwdR">Herhaal Wachtwoord</label>
+                        <input type="password" id="signup-pwdR" name="pwdR" placeholder="Herhaal Wachtwoord" required>
+                        <label for="signup-terms"></label>
+                        <span><input type="checkbox" id="signup-terms" name="terms" required> Lees en accepteer de <a href="terms-and-conditions.php" target="_blank">algemene voorwaarden</a>.</span>
 
                         <button type="submit" id="nextBtn" name="signup">Aanmelden</button>          
                     </form>
