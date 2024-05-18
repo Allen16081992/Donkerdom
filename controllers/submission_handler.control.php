@@ -18,6 +18,11 @@
             $lc = new LoginControl($formFields);
             $lc->verifyLogin();
             
+        } elseif (isset($_POST['signup']) && !isset($formFields['terms']) || $formFields['terms'] !== 'on') {
+            require_once '../config/session_manager.config.php';
+            $_SESSION['error'] = 'Please accept the terms and conditions.';
+            header('location: ../signup.php');
+
         } elseif (isset($_POST['signup']) || isset($_POST['addMember'])) {
             require_once '../models/signup.model.php';
             require_once './signup.control.php';

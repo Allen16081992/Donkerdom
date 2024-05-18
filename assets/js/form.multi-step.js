@@ -49,13 +49,27 @@ function nextPrev(n) {
   currentTab = currentTab + n;
   // if the end of the form is reached:
   if (currentTab >= x.length) {
+
+    // Validate the checkbox
+    const termsCheckbox = document.getElementById("terms");
+    const termsLabel = document.querySelector("label[for='terms']");
+    if (!termsCheckbox.checked) {
+      termsCheckbox.classList.add("invalid");
+      termsLabel.classList.add("invalid");
+      currentTab--; // Decrement the tab index to stay on the last tab
+      showTab(currentTab); // Show the last tab again
+      return false;
+    }
+
     //...the form gets submitted:
     document.getElementById("registerform").submit();
     return false;
   }
   // Otherwise, display the correct tab:
   showTab(currentTab);
+  nextBtn.disabled = !termsCheckbox.checked;
 }
+
 
 function validateForm() {
   // This function deals with validation of the form fields

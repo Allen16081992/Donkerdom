@@ -6,25 +6,21 @@
         private static $dbInstance;
         private $dbInvoke;
 
-        // Constructor: Establish a database connection once during object instantiation,
-        // reduce overhead associated with creating a new connection for each operation.
+        // Establish a database connection once during instantiation to reduce overhead.
         private function __construct() {
             try { 
                 // Establish a PDO database connection
                 $this->dbInvoke = new PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME, DB_USER, DB_PASSWORD,
-                    //Deny charset encoding injections that could cause SQL injections with and without prepared statements.
+                    // Prevent charset encoding injections.
                     array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8'")
                 );
             } catch (PDOException $e) {
-                // Log the exception details
                 error_log("Failed to connect to the database: " . $e->getMessage(), 0);
-                // Throw a custom exception with a user-friendly message
                 throw new Exception("Failed to connect to the database. MySQL may have crashed.");
             }
         }
 
-        // Allow subclasses to access the 'static' method directly.
-        // Provide a global access point for creating a single instance of the class (Singleton pattern).
+        // Singleton pattern: global access point to a single instance.
         public static function getInstance() {
             if (!self::$dbInstance) {
                 self::$dbInstance = new self();
@@ -32,8 +28,7 @@
             return self::$dbInstance;
         }
 
-        // Method to get the PDO instance for database operations
-        // By re-using the current database connection, we manage memory and server load better.
+        // Return the PDO instance for database operations to reduce memory and server load.
         public function connect() {
             return $this->dbInvoke;
         }

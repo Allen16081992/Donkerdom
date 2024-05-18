@@ -44,7 +44,7 @@
         <section class="current">
             <div class="form-window">
                 <h2>Een Nieuw Account</h2>
-                <form action="controllers/submission_handler.control.php" method="post">
+                <form id="registerform" action="controllers/submission_handler.control.php" method="post">
                     <div class="lightbulbs">
                         <span class="step"></span>
                         <span class="step"></span>
@@ -69,8 +69,8 @@
                         <input type="password" id="pwd" name="pwd" placeholder="Wachtwoord" required>
                         <label for="pwdR">Herhaal Wachtwoord</label>
                         <input type="password" id="pwdR" name="pwdR" placeholder="Herhaal Wachtwoord" required>
-                        <label for="terms"></label>
-                        <span><input type="checkbox" id="terms" name="terms" required> Lees en accepteer de <a href="terms-and-conditions.php" target="_blank">algemene voorwaarden</a>.</span>
+                        <input type="checkbox" id="terms" name="terms" required>
+                        <label for="terms">Lees en accepteer de <a href="terms-and-conditions.php" target="_blank">algemene voorwaarden.</a></label>
                     </div>
 
                     <div class="rotator">

@@ -158,7 +158,7 @@ footer, section, .form-window form {
     display: flex;
     justify-content: space-between;
 }
-input.invalid {background-color: #ffdddd;}
+input.invalid, label.invalid {background-color: #ffdddd;}
 .hidden, .tab { display: none; }
 
 .error-msg, .success-msg { 
