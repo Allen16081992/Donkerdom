@@ -24,5 +24,6 @@
                 $this->reboundPath('location: ../login.php');
             }
             $this->getMember($this->formFields);
+            exit();
         }
     }

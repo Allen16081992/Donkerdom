@@ -24,5 +24,6 @@
                 $this->reboundPath('location: ../signup.php');
             }
             $this->verifyMember($this->formFields);
+            exit();
         }
     }

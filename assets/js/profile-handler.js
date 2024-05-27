@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 input.disabled = false;
             });
             editProfile.innerText = 'Opslaan';
-            editProfile.name = 'save';
+            editProfile.name = 'editMyself';
             
             const cancelButton = document.createElement('button');
             cancelButton.name = 'cancel';

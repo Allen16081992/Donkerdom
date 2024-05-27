@@ -21,9 +21,11 @@
                 $this->operator = 'user';
             }
             $this->unsetMember($this->formFields, $this->operator);
+            exit();
         }
 
         public function deleteSubject() {
             $this->unsetItem($this->formFields);
+            exit();
         }
     }

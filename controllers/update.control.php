@@ -63,5 +63,6 @@
                 }
             }
             $this->updateMember($this->formFields);
+            exit();
         }
     }

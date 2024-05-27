@@ -44,7 +44,7 @@
 
             // Fetch the row from the result.
             $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            return $data;
+            return $data; exit();
         }
 
         public function fetch_Subject() {
@@ -56,7 +56,7 @@
            
             // Fetch the row from the result.
             $data = $stmt->fetch(PDO::FETCH_ASSOC);
-            return $data;
+            return $data; exit();
         }
     }
 

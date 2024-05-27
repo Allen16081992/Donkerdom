@@ -64,5 +64,6 @@
             $stmt = $db->connect()->prepare('DELETE FROM subjects WHERE id = :item_ID');
             $stmt->bindParam(":item_id", $formFields['item_id']);
             $stmt->execute();
+            exit();
         }
     }

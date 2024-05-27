@@ -16,24 +16,25 @@
             require_once '../models/login.model.php';
             require_once './login.control.php';
             $lc = new LoginControl($formFields);
-            $lc->verifyLogin();
-            
-        } elseif (isset($_POST['signup']) && !isset($formFields['terms']) || $formFields['terms'] !== 'on') {
+            $lc->verifyLogin(); exit();
+        }
+        elseif (isset($_POST['signup']) || isset($_POST['addMember'])) {
             require_once '../config/session_manager.config.php';
-            $_SESSION['error'] = 'Please accept the terms and conditions.';
-            header('location: ../signup.php');
-
-        } elseif (isset($_POST['signup']) || isset($_POST['addMember'])) {
             require_once '../models/signup.model.php';
             require_once './signup.control.php';
-            
+
             // Set 'pwdR' field if adding a member
             if (isset($_POST['addMember'])) {
                 $formFields['pwdR'] = htmlspecialchars($_POST['pwd']);
+
+            } elseif (isset($_POST['signup']) && !isset($formFields['terms'])) {
+                $_SESSION['error'] = 'Please accept the terms and conditions.';
+                header('location: ../signup.php'); 
+                exit();
             }
             
             $lc = new SignupControl($formFields);
-            $lc->verifySignup();
+            $lc->verifySignup(); exit();
 
         } elseif (isset($_POST['editMember']) || isset($_POST['editMyself'])) {
             require_once '../models/update.model.php';
@@ -45,18 +46,18 @@
             }
             
             $lc = new UpdateControl($formFields);
-            $lc->verifyEdit();
+            $lc->verifyEdit(); exit();
 
         } elseif (isset($_POST['undoMember']) || isset($_POST['shutAcc'])) {
             require_once '../models/delete.model.php';
             require_once './delete.control.php';
             $lc = new DeleteControl($formFields);
-            $lc->deleteAccount();
+            $lc->deleteAccount(); exit();
         }
         elseif (isset($_POST['item_id'])) {
             require_once '../models/delete.model.php';
             require_once './delete.control.php';
             $lc = new DeleteControl($formFields);
-            $lc->deleteSubject();
+            $lc->deleteSubject(); exit();
         }
     }
